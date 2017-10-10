@@ -1,0 +1,86 @@
+<% content_for :title, "Review #{current_event.name}" %>
+<div class="row justify-content-md-center">
+  <div class="col col-md-8">
+    <h1>Review <%= current_event.name %></h1>
+
+    <p>
+      Para nosotros es muy importante que todos los asistentes tengan la mejor
+      experiencia en nuestros eventos.
+    </p>
+    <p>
+      Por eso te pedimos que contestes la siguiente evaluación para ayudarnos a
+      mantener el mejor ambiente de colaboración y desempeño entre los equipos.
+    </p>
+    <p>
+      Interpreta del 1 al 5 como se desempeñó cada integrante de tu equipo en
+      las siguientes áreas.
+    </p>
+
+    <div id="wizard">
+      <%= simple_form_for(@review, url: event_review_path, method: :post) do |f| %>
+        <% @team_questions.each do |team_question| %>
+        <h3></h3>
+          <section>
+            <h4><%= team_question.question %></h4>
+            <% @team_mates.each do |team_mate| %>
+              <strong><%= team_mate.name %></strong>
+              <div class="question-input">
+                <%= render inline: team_question.input("team_review_answers[#{team_mate.id}][#{team_question.id}]") %>
+              </div>
+            <% end %>
+          </section>
+        <% end %>
+        <h3></h3>
+        <section>
+          <p>
+            También es importante para nosotros saber que áreas podemos mejorar para que
+            te la pases increíble en el próximo evento.
+          </p>
+          <div class="event-questions">
+            <% @event_questions.each do |event_question| %>
+              <div class="question"><%= event_question.question %></div>
+              <div class="question-input">
+                  <%= render inline: event_question.input("event_question_answers[#{event_question.id}]") %>
+              </div>
+            <% end %>
+          </div>
+        </section>
+        <%= f.submit 'Submit', class: "btn btn-primary hidden", id: "submit-new-form" %>
+      <% end %>
+      </div>
+    <p>¡Muchas gracias, nos vemos en el próximo Innovation Process!</p>
+  </div>
+</div>
+<script>
+  $(document).on('turbolinks:load', function() {
+    $("#new_review").steps({
+        headerTag: "h3",
+        bodyTag: "section",
+        transitionEffect: "slideLeft",
+        autoFocus: true,
+        onFinished: function (event, currentIndex){
+            $('#submit-new-form').click();
+        }
+    });
+
+    var x = document.getElementsByClassName("c-rating");
+    var i;
+    for (i = 0; i < x.length; i++) {
+      var el = x[i];
+      //alert(el.childNodes[0].name);
+      // current rating, or initial rating
+      var currentRating = 0;
+
+      // max rating, i.e. number of stars you want
+      var maxRating= 5;
+
+      // callback to run after setting the rating
+      var callback = function(rating, star) {
+        star.parentNode.childNodes[0].value = rating;
+      };
+
+      // rating instance
+      var myRating = rating(el, currentRating, maxRating, callback);
+    }
+  });
+</script>

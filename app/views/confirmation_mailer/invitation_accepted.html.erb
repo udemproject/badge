@@ -1,0 +1,13 @@
+<p>¡Hola <%= @user.name.split.first.titleize %>!</p>
+
+<p>Te confirmo que ya estas registrado para participar en <%= @event.name %>.</p>
+<p>Aquí te dejamos la agenda del evento y la dirección de <%= @location.name %>. <%= link_to @location.gmaps_url, @location.gmaps_url %></p>
+<div>
+  <%= image_tag attachment_url(@event, :agenda_image), style: 'width: 80%;' %>
+</div>
+<p>Recuerda traer toda la actitud y lo que necesites para trabajar: laptop, herramientas de trabajo, etc.</p>
+<p>¡Nos vemos muy pronto!</p>
+<p>
+  Saludos,<br />
+  Draft 🤖
+</p>

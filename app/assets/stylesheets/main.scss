@@ -1,0 +1,172 @@
+$shadow1: rgba(255, 255, 255, .4);
+$shadow2: rgba(0, 0, 0, .33);
+$disruptive-blue: #469cb6;
+
+.btn-facebook{color:#fff;background-color:#3b5998;border-color:rgba(0,0,0,0.2)}.btn-facebook:focus,.btn-facebook.focus{color:#fff;background-color:#2d4373;border-color:rgba(0,0,0,0.2)}
+.btn-facebook:hover{color:#fff;background-color:#2d4373;border-color:rgba(0,0,0,0.2)}
+.btn-facebook:active,.btn-facebook.active,.open>.dropdown-toggle.btn-facebook{color:#fff;background-color:#2d4373;border-color:rgba(0,0,0,0.2)}.btn-facebook:active:hover,.btn-facebook.active:hover,.open>.dropdown-toggle.btn-facebook:hover,.btn-facebook:active:focus,.btn-facebook.active:focus,.open>.dropdown-toggle.btn-facebook:focus,.btn-facebook:active.focus,.btn-facebook.active.focus,.open>.dropdown-toggle.btn-facebook.focus{color:#fff;background-color:#23345a;border-color:rgba(0,0,0,0.2)}
+.btn-facebook:active,.btn-facebook.active,.open>.dropdown-toggle.btn-facebook{background-image:none}
+.btn-facebook.disabled:hover,.btn-facebook[disabled]:hover,fieldset[disabled] .btn-facebook:hover,.btn-facebook.disabled:focus,.btn-facebook[disabled]:focus,fieldset[disabled] .btn-facebook:focus,.btn-facebook.disabled.focus,.btn-facebook[disabled].focus,fieldset[disabled] .btn-facebook.focus{background-color:#3b5998;border-color:rgba(0,0,0,0.2)}
+.btn-facebook .badge{color:#3b5998;background-color:#fff}
+
+.front-page {
+  text-align: center;
+}
+
+.alert {
+  margin-top: 20px;
+}
+
+.card-form {
+  box-shadow: 0 0 0 5px $shadow1, 0 4px 20px $shadow2;
+  margin: 25px auto;
+  max-width: 400px;
+}
+
+.title {
+  color: $disruptive-blue;
+  margin-top: 25px;
+  text-align: center;
+}
+
+.avatar {
+  padding: 25px 25px 0;
+}
+
+.uploadable-image:hover {
+  cursor: pointer;
+  opacity: .7;
+
+  + .plus {
+    display: block;
+  }
+}
+
+.plus {
+  color: rgba(255, 255, 255, .85);
+  display: none;
+  font-family: Helvetica;
+  font-size: 96px;
+  font-weight: 900;
+  left: 43%;
+  position: absolute;
+  top: 20%;
+}
+
+.hidden {
+  display: none;
+}
+
+.invitation-btn {
+  width: 100%;
+}
+
+.vertical-align {
+  position: relative;
+  top: 50%;
+  transform: translateY(50%);
+}
+
+.btn-login {
+  margin: 5px;
+}
+
+@media (max-width:767px) {
+  .bd-navbar .nav-item {
+    float: none;
+  }
+
+  .bd-navbar .nav-item + .nav-item {
+    margin-left: 0;
+  }
+}
+
+.tag-form {
+  box-shadow: 0 0 0 5px $shadow1, 0 4px 20px $shadow2;
+  margin: 25px auto;
+  max-width: 400px;
+
+  .name-tag {
+    margin-top: 15px;
+  }
+
+  .img-tag {
+    padding: 10px;
+  }
+}
+
+.draft-team-list {
+  display: flex;
+  align-items: center;
+  img {
+    max-width: 50px;
+    margin-right: 1rem;
+  }
+}
+
+
+.teams {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  &--center {
+    justify-content: center;
+  }
+}
+
+.team-list {
+  padding: 1rem;
+  &--third {
+    width: calc(33.33% - .5rem);
+  }
+}
+
+.team-problem {
+  text-align: center;
+  font-size: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.team-members {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.wait-list {
+  list-style: none;
+  margin: 0;
+  padding: 1rem;
+}
+
+.team-member {
+  display: flex;
+  align-items: center;
+  padding-bottom: .5rem;
+  margin-bottom: .5rem;
+  border-bottom: 1px solid #e5e5e5;
+
+  &:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
+  figure {
+    max-width: 50px;
+    margin-right: .5rem;
+    margin-bottom: 0;
+    overflow: hidden;
+  }
+  img {
+    max-height: 50px;
+    max-width: 50px;
+    display: block;
+    width: 100%;
+  }
+  p {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+  }
+}

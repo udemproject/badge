@@ -1,0 +1,15 @@
+<p>Hola <%= @user.name.split.first.titleize %>,</p>
+
+<p>Muchas gracias por participar con nosotros en <%= @event.name %>.</p>
+<p>
+  Nos ayudaría mucho si pudieras llenar la siguiente coevaluación de tu equipo,
+  esto con el fin de mejorar la experiencia en futuros eventos. No te tomará más
+  de 5 minutos.
+</p>
+
+<p><a href="<%= event_review_url(@event) %>"><%= event_review_url(@event) %></a></p>
+
+<p>
+  De nuevo muchas gracias, <br />
+  Draft 🤖
+</p>

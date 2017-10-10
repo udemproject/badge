@@ -1,0 +1,6 @@
+var element = document.getElementById("invitation-<%= @invitation.id %>");
+element.remove();
+$('#flash').append('<%= bootstrap_flash %>');
+setTimeout( function() {
+  $('.alert').alert('close');
+}, 5000);

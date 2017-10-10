@@ -1,0 +1,46 @@
+<div id="update_draft" class="row">
+  <div class="col-md-3 col-sm-12">
+    <h2 class="title">Pendientes</h2>
+
+    <ul id="waiting_list" class="card wait-list">
+      <% @attendees.order(:created_at).each do |attendee| %>
+        <li id="waiting-<%= attendee.user.id %>" class="team-member">
+          <figure class="img-circle img-fluid">
+            <%= image_tag(attendee.user.picture_url) %>
+          </figure>
+          <p class="team-member-name"><%= attendee.user.name %></p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-md-9 col-sm-12">
+    <h2 class="title">Lista de equipos</h2>
+
+    <div class="teams">
+      <% @teams.each do |team| %>
+        <div class="card team-list team-list--third">
+          <h4 class="team-problem"><%= team.name %></h4>
+
+          <ul id="team-<%= team.id %>" class="team-members">
+            <% team.users.each do |user| %>
+              <li class="team-member">
+                <figure class="img-circle img-fluid">
+                  <%= image_tag(user.picture_url) %>
+                </figure>
+                <p class="team-member-name"><%= user.name %></p>
+              </li>
+            <% end %>
+            <% team.missing_profiles.each do |profile| %>
+              <li class="team-member">
+                <figure class="img-fluid">
+                  <%= attachment_image_tag(Profile.find_by(name: profile), :image) %>
+                </figure>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

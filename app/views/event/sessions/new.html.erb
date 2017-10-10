@@ -1,0 +1,22 @@
+<% content_for :title, 'Registro Proceso de Innovación' %>
+<h2 class="title">¡Bienvenido a <%= current_event.name %>!</h2>
+<div class="card card-block card-form">
+  <div class="row">
+    <div class="col-sm-12">
+      <%= attachment_image_tag(current_event, :image, class: "card-img-top img-fluid") %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10 offset-sm-1">
+      <%= button_to 'Ingresa con Facebook', "/auth/facebook/?event=#{current_event.slug}", class:"btn btn-primary btn-block btn-login btn-facebook" %>
+    </div>
+  </div>
+</div>
+<div class="card card-block card-form">
+  <div class="row">
+    <div class="col-sm-12 text-sm-center">
+      <p>¿Ya tienes cuenta? <%= link_to "Haz login", event_login_path %>.</p>
+      <p style="margin: 0">¿No tienes cuenta? <%= link_to "Registrate", new_event_identity_path %>.</p>
+    </div>
+  </div>
+</div>

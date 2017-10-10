@@ -1,0 +1,28 @@
+.c-rating {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c-rating__item {
+  background: image-url('stars.svg');
+  background-position: 0 0;
+  cursor: pointer;
+  flex: 0 0 24px;
+  height: 24px;
+  width: 25px;
+}
+
+.c-rating__item:hover,
+.c-rating__item.is-active {
+  background-position: -24px 0;
+}
+
+.event-questions {
+  margin: 1em 0;
+}
+
+.individual-review {
+  margin: 1em 0;
+}

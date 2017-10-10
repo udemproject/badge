@@ -1,0 +1,5 @@
+<% if @turns == 1 %>
+  <h1 id="wait_title" class="title">Falta 1 lugar para tu turno</h1>
+<% else %>
+  <h1 id="wait_title" class="title">Faltan <%= @turns %> lugares para tu turno</h1>
+<% end %>
