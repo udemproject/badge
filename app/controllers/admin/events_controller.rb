@@ -1,29 +1,50 @@
 module Admin
   class EventsController < Admin::ApplicationController
-    # To customize the behavior of this controller,
-    # simply overwrite any of the RESTful actions. For example:
-    #
-    # def index
-    #   super
-    #   @resources = Event.all.paginate(10, params[:page])
-    # end
-
-    # Define a custom finder by overriding the `find_resource` method:
-    # def find_resource(param)
-    #   Event.find_by!(slug: param)
-    # end
-
-    # See https://administrate-docs.herokuapp.com/customizing_controller_actions
-    # for more information
-    
-    def create
-      params[:event][:label_xml] = File.read(params.dig(:event, :label_xml).tempfile) if params.dig(:event, :label_xml)
-      super
+    before_action :set_event, only: %i[show update destroy edit]
+    def index
+      @event =  Event.all
     end
 
+    def new
+      @event =  Event.new
+    end
+
+    def edit; end
+
     def update
-      params[:event][:label_xml] = File.read(params.dig(:event, :label_xml).tempfile) if params.dig(:event, :label_xml)
-      super
+      if @event.update(card_params)
+        redirect_to admin_attendees_path, notice: 'Attendee was successfully updated.'
+      else
+        render :edit
+      end
+    end
+
+    def show; end
+
+    def create
+      @event = Event.new(card_params)
+      if @event.save
+        redirect_to admin_attendee, notice: 'Card was successfully created.'
+      else
+        render :new
+      end
+    end
+
+    def destroy
+      @event.destroy
+      redirect_to admin_attendees_path, notice: 'Card was successfully Destroyed.'
+    end
+
+    private
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_event
+      @event = Event.find(params[:id])
+    end
+
+    # Only allow a trusted parameter "white list" through.
+    def event_params
+      params.require(:set_event).permit(:name, :starts_at, :finishes_at, :location_id)
     end
   end
 end

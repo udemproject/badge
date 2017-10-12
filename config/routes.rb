@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :attendees
     resources :events
-    resources :identities
     resources :invitations
     resources :profiles
     resources :teams
@@ -19,9 +18,6 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'privacy-policy', to: 'pages#privacy'
-  get 'auth/:provider/callback', to: 'sessions#create'
-  post 'auth/:provider/callback', to: 'sessions#create'
-  get "/auth/google_oauth2/callback", to: "sessions#create"
   get 'auth/failure', to: redirect('/')
   get 'logout', to: 'sessions#destroy', as: 'logout'
   # get 'login', to: 'identities#login', as: 'login'
@@ -40,8 +36,6 @@ Rails.application.routes.draw do
   get 'print', to: 'printers#print'
   resources :events, only: :show, format: :js
 
-  resources :identities
-
   scope path: ':event', module: 'event', as: 'event' do
     root to: 'sessions#new', as: 'main'
     get 'logout', to: 'sessions#destroy', as: 'logout'
@@ -58,10 +52,9 @@ Rails.application.routes.draw do
     get 'review', to: 'reviews#new'
     post 'review', to: 'reviews#create'
 
-    get 'login', to: 'identities#login', as: 'login'
+    get 'login', to: 'sessions#login', as: 'login'
     get 'signup', to: 'identities#new', as: 'signup'
 
-    resources :identities
   end
 
   # Serve websocket cable requests in-process

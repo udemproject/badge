@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731220414) do
+ActiveRecord::Schema.define(version: 20171012223826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,30 +35,16 @@ ActiveRecord::Schema.define(version: 20170731220414) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
-    t.string   "image_id"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.datetime "starts_at"
     t.datetime "finishes_at"
     t.string   "image_filename"
     t.string   "slug"
-    t.text     "label_xml"
-    t.boolean  "choose_team",           default: false
-    t.boolean  "checkin",               default: false
-    t.string   "agenda_image_id"
-    t.string   "agenda_image_filename"
     t.boolean  "review"
     t.integer  "location_id"
     t.index ["location_id"], name: "index_events_on_location_id", using: :btree
     t.index ["slug"], name: "index_events_on_slug", unique: true, using: :btree
-  end
-
-  create_table "identities", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
   end
 
   create_table "invitations", force: :cascade do |t|
@@ -144,6 +130,7 @@ ActiveRecord::Schema.define(version: 20170731220414) do
     t.datetime "updated_at",                   null: false
     t.string   "avatar_id"
     t.bigint   "cellphone"
+    t.string   "password_digest"
     t.index ["profile_id"], name: "index_users_on_profile_id", using: :btree
   end
 

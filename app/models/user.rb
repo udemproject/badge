@@ -12,7 +12,12 @@ class User < ApplicationRecord
   enum role: [:user, :admin]
 
   attachment :avatar, type: :image
-
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 255 },
+                    format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }
+  validates :password, presence: true, length: { minimum: 6 }
+  has_secure_password
   def overall_rank
     reviewees.average(:stars)
   end
@@ -49,7 +54,6 @@ class User < ApplicationRecord
       user.name = auth.info.name
       user.image_url = auth.info.image
       user.oauth_token = auth.credentials.token
-      user.oauth_expires_at = Time.at(auth.credentials.expires_at) if auth.credentials.expires
       user.invitations << Invitation.create(event: current_event)
       user.save!
     end
