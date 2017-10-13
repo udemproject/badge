@@ -1,8 +1,9 @@
 module Admin
   class EventsController < Admin::ApplicationController
     before_action :set_event, only: %i[show update destroy edit]
+
     def index
-      @event =  Event.all
+      @events =  Event.all
     end
 
     def new
@@ -12,8 +13,8 @@ module Admin
     def edit; end
 
     def update
-      if @event.update(card_params)
-        redirect_to admin_attendees_path, notice: 'Attendee was successfully updated.'
+      if @event.update(event_params)
+        redirect_to admin_events_path, notice: 'Attendee was successfully updated.'
       else
         render :edit
       end
@@ -22,9 +23,9 @@ module Admin
     def show; end
 
     def create
-      @event = Event.new(card_params)
+      @event = Event.new(event_params)
       if @event.save
-        redirect_to admin_attendee, notice: 'Card was successfully created.'
+        redirect_to admin_event_path, notice: 'Card was successfully created.'
       else
         render :new
       end
@@ -32,7 +33,7 @@ module Admin
 
     def destroy
       @event.destroy
-      redirect_to admin_attendees_path, notice: 'Card was successfully Destroyed.'
+      redirect_to admin_events_path, notice: 'Card was successfully Destroyed.'
     end
 
     private

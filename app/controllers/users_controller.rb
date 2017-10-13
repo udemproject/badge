@@ -3,6 +3,10 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def new
+    @user =  User.new
+  end
+
   def update
     if current_user.update(user_params)
       redirect_to user_next_path, notice: 'Se actualizaron tus datos'

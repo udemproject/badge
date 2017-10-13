@@ -2,7 +2,7 @@ module Admin
   class AttendeesController < Admin::ApplicationController
     before_action :set_attende, only: %i[show update destroy edit]
     def index
-      @attendee =  Attendee.all
+      @attendees =  Attendee.all
     end
 
     def new
@@ -12,7 +12,7 @@ module Admin
     def edit; end
 
     def update
-      if @attendee.update(card_params)
+      if @attendee.update(attendee_params)
         redirect_to admin_attendees_path, notice: 'Attendee was successfully updated.'
       else
         render :edit
@@ -22,9 +22,9 @@ module Admin
     def show; end
 
     def create
-      @attendee = Attendee.new(card_params)
+      @attendee = Attendee.new(attendee_params)
       if @attendee.save
-        redirect_to admin_attendee, notice: 'Card was successfully created.'
+        redirect_to admin_attendee, notice: 'Attendee was successfully created.'
       else
         render :new
       end
@@ -32,7 +32,7 @@ module Admin
 
     def destroy
       @cards.destroy
-      redirect_to admin_attendees_path, notice: 'Card was successfully Destroyed.'
+      redirect_to admin_attendees_path, notice: 'Attendee was successfully Destroyed.'
     end
 
     private

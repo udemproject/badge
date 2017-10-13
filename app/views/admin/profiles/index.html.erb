@@ -4,7 +4,7 @@
   <li><%= link_to "Profiles", admin_profiles_path, class: "category"%></li>
   <li><%= link_to "Teams", admin_teams_path, class: "category"%></li>
   <li><%= link_to "Users", admin_users_path, class: "category"%></li>
-  <li><%= link_to "Reviews", admin_reviews_path, class: "category"%></li>
+  <li><%= link_to "reviews", admin_reviews_path, class: "category"%></li>
   <li><%= link_to "Badge", admin_badges_path, class: "category"%></li>
 </ul>
 
@@ -18,13 +18,13 @@
         <th width="150"> Delete </th>
       </tr>
     </thead>
-    <% @attendees.each do |attendee|%>
+    <% @profiles.each do |profile|%>
     <tbody>
       <tr>
-        <td><%= attendee.id%></td>
-        <td><%= User.find(attendee.user_id).name%></td>
-        <td><%= link_to "Edit", edit_admin_attendee_path(id: attendee.id), class: "category" %></td>
-        <td><%= link_to 'Delete',{ action: :destroy, id: attendee.id }, method: :delete , data: { confirm: 'Are you sure?' }, class: "category" %></td>
+        <td><%= profile.id%></td>
+        <td><%= profile.name%></td>
+        <td><%= link_to "Edit", edit_admin_profile_path(id: profile.id), class: "category" %></td>
+        <td><%= link_to 'Delete',{ action: :destroy, id: profile.id }, method: :delete , data: { confirm: 'Are you sure?' }, class: "category" %></td>
       </tr>
     </tbody>
     <%end%>

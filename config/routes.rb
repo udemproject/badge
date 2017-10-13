@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create2'
   get 'signup', to: 'identities#new', as: 'signup'
   get 'user/edit', to: 'users#edit', as: 'edit_user'
+  get 'user/new', to: 'users#new', as: 'new_user'
   patch 'user/', to: 'users#update', as: 'user'
   get 'user/invitations', to: 'users#invitations', as: 'invitations'
   post 'user/invitations/accept/:id' => 'invitations#accept', as: 'accept_invitations'
@@ -53,7 +54,7 @@ Rails.application.routes.draw do
     post 'review', to: 'reviews#create'
 
     get 'login', to: 'sessions#login', as: 'login'
-    get 'signup', to: 'identities#new', as: 'signup'
+    get 'user/new', to: 'users#new', as: 'new_user'
 
   end
 
