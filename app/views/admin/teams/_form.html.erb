@@ -1,9 +1,9 @@
-<%= form_for [:admin, @attendees], html: { class: "form-horizontal article" } do |f| %>
+<%= form_for [:admin, @team], html: { class: "form-horizontal article" } do |f| %>
 
     <div class="form-group">
-      <%= f.label :user_id, class: 'control-label col-lg-2' %>
+      <%= f.label "NAME", class: 'control-label col-lg-2' %>
       <div class="col-lg-10">
-        <%= f.collection_select :user_id, User.all, :id, :name, {}, class: 'form-control' %>
+        <%= f.text_field :name, class: 'form-control' %>
       </div>
       </div>
 
@@ -18,7 +18,7 @@
           <div class="col-lg-offset-2 col-lg-10">
             <%= f.submit nil, class: 'button' %>
             <%= link_to t('.cancel', default: t("helpers.links.cancel")),
-                      admin_attendees_path, class: 'button' %>
+                      admin_teams_path, class: 'button' %>
           </div>
         </div>
 

@@ -7,7 +7,7 @@ module Admin
        super
        @resources = Badge.page(params[:page]).per(10)
      end
-     
+
     def edit
       @user = User.all
     end
@@ -15,7 +15,7 @@ module Admin
 
 
       def set_badge
-        @badge = Badge.find(params[:id])
+        @badge = Badge.find(params[:id].to_i)
       end
 
     # Never trust parameters from the scary internet, only allow the white list through.

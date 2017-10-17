@@ -7,14 +7,14 @@ module Admin
     end
 
     def new
-      @teams =  Team.new
+      @team =  Team.new
     end
 
     def edit; end
 
     def update
-      if @teams.update(team_params)
-        redirect_to admin_attendees_path, notice: 'Attendee was successfully updated.'
+      if @team.update(team_params)
+        redirect_to admin_teams_path, notice: 'Team was successfully updated.'
       else
         render :edit
       end
@@ -23,29 +23,29 @@ module Admin
     def show; end
 
     def create
-      @teams = Team.new(team_params)
-      if @teams.save
-        redirect_to admin_attendee, notice: 'Card was successfully created.'
+      @team = Team.new(team_params)
+      if @team.save
+        redirect_to admin_teams_path, notice: 'Team was successfully created.'
       else
         render :new
       end
     end
 
     def destroy
-      @teams.destroy
-      redirect_to admin_attendees_path, notice: 'Card was successfully Destroyed.'
+      @team.destroy
+      redirect_to admin_teams_path, notice: 'Team was successfully Destroyed.'
     end
 
     private
 
     # Use callbacks to share common setup or constraints between actions.
     def set_teams
-      @teams = Team.find(params[:id])
+      @team = Team.find(params[:id].to_i)
     end
 
     # Only allow a trusted parameter "white list" through.
     def team_params
-      params.require(:set_event).permit(:name, :starts_at, :finishes_at, :location_id)
+      params.require(:team).permit(:name, :event_id)
     end
 
   end

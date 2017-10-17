@@ -1,12 +1,9 @@
 <div class="avatar">
-  <h2 class="card-title">Confirma tus datos</h2>
-  <img class="card-img-top img-fluid uploadable-image" src="<%= @user.picture_url %>" alt="Profile Picture">
   <span class="plus">+</span>
 </div>
 <div class="card-block">
 
   <%= form_for @user do |f| %>
-    <%= f.attachment_field :avatar, class: 'hidden' %>
     <div class="form-group row">
       <%= f.label :name, 'Nombre', class: 'col-sm-2 form-control-label' %>
       <div class="col-sm-10">

@@ -6,13 +6,13 @@ module Admin
     end
 
     def new
-      @attendee =  Attendee.new
+      @attendees =  Attendee.new
     end
 
     def edit; end
 
     def update
-      if @attendee.update(attendee_params)
+      if @attendees.update(attendee_params)
         redirect_to admin_attendees_path, notice: 'Attendee was successfully updated.'
       else
         render :edit
@@ -22,8 +22,8 @@ module Admin
     def show; end
 
     def create
-      @attendee = Attendee.new(attendee_params)
-      if @attendee.save
+      @attendees = Attendee.new(attendee_params)
+      if @attendees.save
         redirect_to admin_attendee, notice: 'Attendee was successfully created.'
       else
         render :new
@@ -31,7 +31,7 @@ module Admin
     end
 
     def destroy
-      @cards.destroy
+      @attendees.destroy
       redirect_to admin_attendees_path, notice: 'Attendee was successfully Destroyed.'
     end
 
@@ -39,12 +39,12 @@ module Admin
 
     # Use callbacks to share common setup or constraints between actions.
     def set_attende
-      @attendee = Attendee.find(params[:id])
+      @attendees = Attendee.find(params[:id].to_i)
     end
 
     # Only allow a trusted parameter "white list" through.
     def attendee_params
-      params.require(:set_attende).permit(:user_id, :event_id, :team_id)
+      params.require(:attendee).permit(:user_id, :event_id, :team_id)
     end
 
   end

@@ -4,7 +4,7 @@
   <li><%= link_to "Profiles", admin_profiles_path, class: "category"%></li>
   <li><%= link_to "Teams", admin_teams_path, class: "category"%></li>
   <li><%= link_to "Users", admin_users_path, class: "category"%></li>
-  <li><%= link_to "reviews", admin_reviews_path, class: "category"%></li>
+  <li><%= link_to "Reviews", admin_reviews_path, class: "category"%></li>
   <li><%= link_to "Badge", admin_badges_path, class: "category"%></li>
 </ul>
 
@@ -12,20 +12,19 @@
   <table class='stack'>
     <thead>
       <tr>
-        <th width="300"> Name</th>
-        <th width="150"> Date </th>
-        <th width="150"> Total</th>
-        <th width="150"> link</th>
+        <th width="300"> Id</th>
+        <th width="150"> Name </th>
+        <th width="150"> Edit </th>
+        <th width="150"> Delete </th>
       </tr>
     </thead>
-
-    <% @events.each do |event|%>
+    <% @teams.each do |team|%>
     <tbody>
       <tr>
-        <td><%= event.id%></td>
-        <td><%= event.name%></td>
-        <td><%= link_to "Edit", edit_admin_event_path(slug: event.slug), class: "category" %></td>
-        <td><%= link_to 'Delete',{ action: :destroy, slug: event.slug }, method: :delete , data: { confirm: 'Are you sure?' }, class: "category" %></td>
+        <td><%= team.id%></td>
+        <td><%= team.name%></td>
+        <td><%= link_to "Edit", edit_admin_team_path(id: team.id), class: "category" %></td>
+        <td><%= link_to 'Delete',{ action: :destroy, id: team.id }, method: :delete , data: { confirm: 'Are you sure?' }, class: "category" %></td>
       </tr>
     </tbody>
     <%end%>

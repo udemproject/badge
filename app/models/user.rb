@@ -1,12 +1,12 @@
 class User < ApplicationRecord
   belongs_to :profile, required: false
-  has_many :invitations
+  has_many :invitations, dependent: :destroy
   has_many :accepted_invitations, -> { where(status: :accepted) }, class_name: 'Invitation'
-  has_many :attendees
+  has_many :attendees, dependent: :destroy
 
   has_many :reviewees, class_name: 'Review', foreign_key: 'reviewee_id'
   has_many :reviewers, class_name: 'Review', foreign_key: 'reviewer_id'
-  has_many :questions, through: :reviewees
+  has_many :questions, through: :reviewees,  dependent: :destroy
 
   enum shirt_size: [:s, :m, :l, :xl]
   enum role: [:user, :admin]

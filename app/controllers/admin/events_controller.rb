@@ -1,20 +1,20 @@
 module Admin
   class EventsController < Admin::ApplicationController
-    before_action :set_event, only: %i[show update destroy edit]
+    before_action :set_event, only: [:show, :update, :destroy, :edit]
 
     def index
       @events =  Event.all
     end
 
     def new
-      @event =  Event.new
+      @event = Event.new
     end
 
     def edit; end
 
     def update
       if @event.update(event_params)
-        redirect_to admin_events_path, notice: 'Attendee was successfully updated.'
+        redirect_to admin_events_path, notice: 'Event was successfully updated.'
       else
         render :edit
       end
@@ -25,7 +25,7 @@ module Admin
     def create
       @event = Event.new(event_params)
       if @event.save
-        redirect_to admin_event_path, notice: 'Card was successfully created.'
+        redirect_to admin_event_path, notice: 'Event was successfully created.'
       else
         render :new
       end
@@ -33,19 +33,19 @@ module Admin
 
     def destroy
       @event.destroy
-      redirect_to admin_events_path, notice: 'Card was successfully Destroyed.'
+      redirect_to admin_events_path, notice: 'Event was successfully Destroyed.'
     end
 
     private
 
     # Use callbacks to share common setup or constraints between actions.
     def set_event
-      @event = Event.find(params[:id])
+      @event = Event.find(params[:slug])
     end
 
     # Only allow a trusted parameter "white list" through.
     def event_params
-      params.require(:set_event).permit(:name, :starts_at, :finishes_at, :location_id)
+      params.require(:event).permit(:name, :starts_at, :finishes_at, :location_id)
     end
   end
 end

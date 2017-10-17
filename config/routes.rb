@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :attendees
-    resources :events
+    resources :events, param: :slug
     resources :invitations
     resources :profiles
     resources :teams
@@ -18,15 +18,12 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'privacy-policy', to: 'pages#privacy'
-  get 'auth/failure', to: redirect('/')
+  # get 'auth/failure', to: redirect('/')
   get 'logout', to: 'sessions#destroy', as: 'logout'
   # get 'login', to: 'identities#login', as: 'login'
   get 'login', to: 'sessions#login', as: 'login'
   post 'login', to: 'sessions#create2'
-  get 'signup', to: 'identities#new', as: 'signup'
-  get 'user/edit', to: 'users#edit', as: 'edit_user'
-  get 'user/new', to: 'users#new', as: 'new_user'
-  patch 'user/', to: 'users#update', as: 'user'
+  resources :users, only: [:show, :create, :edit, :update, :new]
   get 'user/invitations', to: 'users#invitations', as: 'invitations'
   post 'user/invitations/accept/:id' => 'invitations#accept', as: 'accept_invitations'
   post 'user/invitations/reject/:id' => 'invitations#reject', as: 'reject_invitations'
