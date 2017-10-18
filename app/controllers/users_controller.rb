@@ -18,7 +18,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to redirect_to @user, notice: 'User was successfully created.'
+      log_in(@user)
+      remember(@user)
+      redirect_to user_path(id: @user.id), notice: 'User was successfully created.'
     else
       flash[:alert] = 'No se pudo crear la cuenta'
       render :new
@@ -45,7 +47,7 @@ class UsersController < ApplicationController
 
 
   def user_params
-    params.require(:user).permit(:name, :email, :shirt_size, :avatar)
+    params.require(:user).permit(:name, :email, :password, :shirt_size, :avatar)
   end
 
   def set_user

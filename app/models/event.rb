@@ -8,7 +8,7 @@ class Event < ApplicationRecord
   has_many :invitations, dependent: :destroy
   has_many :attendees, dependent: :destroy
   has_many :teams, dependent: :destroy
-  has_many :users, through: :attendees
+  has_many :users, through: :attendees, dependent: :destroy
   has_many :invited_users, through: :invitations, class_name: 'User', source: :user
   has_many :reviews, -> { where.not(answer: nil) }
   attachment :image

@@ -1,8 +1,8 @@
 module Admin
   class LocationsController < Admin::ApplicationController
-    before_action :set_location, only: %i[show update destroy edit]
+    before_action :set_location, only: [:show,  :update,  :destroy,  :edit]
     def index
-      @location =  Location.all
+      @locations =  Location.all
     end
 
     def new
@@ -24,7 +24,7 @@ module Admin
     def create
       @location = Location.new(location_params)
       if @location.save
-        redirect_to admin_location_path, notice: 'locatiob was successfully created.'
+        redirect_to action: show, id: @location.id, notice: 'Location was successfully created.'
       else
         render :new
       end
@@ -32,7 +32,7 @@ module Admin
 
     def destroy
       @location.destroy
-      redirect_to admin_locations_path, notice: 'Card was successfully Destroyed.'
+      redirect_to admin_locations_path, notice: 'Location was successfully Destroyed.'
     end
 
     private
@@ -44,7 +44,7 @@ module Admin
 
     # Only allow a trusted parameter "white list" through.
     def location_params
-      params.require(:set_location).permit(:name, :gmaps_url, :address)
+      params.require(:location).permit(:name, :gmaps_url, :address)
     end
   end
 end

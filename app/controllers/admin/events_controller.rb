@@ -3,7 +3,7 @@ module Admin
     before_action :set_event, only: [:show, :update, :destroy, :edit]
 
     def index
-      @events =  Event.all
+      @events = Event.all
     end
 
     def new
@@ -25,7 +25,7 @@ module Admin
     def create
       @event = Event.new(event_params)
       if @event.save
-        redirect_to admin_event_path, notice: 'Event was successfully created.'
+        redirect_to action: show, slug: @event.slug, notice: 'Event was successfully created.'
       else
         render :new
       end

@@ -1,3 +1,19 @@
+<% if @attendees.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@attendees.errors.count, "error") %> prohibited this article from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @attendees.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+
 <%= form_for [:admin, @attendees], html: { class: "form-horizontal article" } do |f| %>
 
     <div class="form-group">

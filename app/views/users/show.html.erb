@@ -23,18 +23,39 @@
   </div>
 </nav>
 
-<div class="card-form w-75" height="42">
-  <div class="avatar">
-    <h2 class="card-title"><%=@user.name%></h2>
-    <img class="card-img-top img-fluid uploadable-image" src="<%= @user.picture_url %>" alt="Profile Picture">
+<div class="card-block" height="42">
+  <h2 class="card-title"><%=@user.name%></h2>
+  <div class="row">
+  <div class="col-sm-1">
+    <img class="card-img-top " src="<%= @user.picture_url %>" alt="Profile Picture" width="133" height="133">
     <span class="plus">+</span>
   </div>
+  <div class="col-sm-11">
+    <h4 class="card-title" width="150">tshirt:  </h4>
+    <p class="card-text" width="150"> </p>
+  </div>
 </div>
-<div class=" card w-75" height="70">
+</div>
+<div class="card-block" height="70" >
   <h1>Pending invitations</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <div class="card" style="width: 20rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-block">
+      <h4 class="card-title">Event</h4>
+      <p class="card-text">dates and info about the event</p>
+      <a href="#" class="btn btn-primary">go to</a>
+    </div>
+  </div>
 </div>
-<div class="card w-75" height="70">
+<div class="card-block" height="70">
   <h1>current invitations</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <div class="card" style="width: 20rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-block">
+      <h4 class="card-title">Event</h4>
+      <p class="card-text">dates and info about the event</p>
+      <a href="#" class="btn btn-primary">accept</a>
+      <a href="#" class="btn btn-primary">decline</a>
+  </div>
+</div>
 </div>

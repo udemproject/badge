@@ -1,6 +1,6 @@
 module Admin
   class UsersController < Admin::ApplicationController
-    before_action :set_user, only: %i[show update destroy edit]
+    before_action :set_user, only: [:show, :update, :destroy, :edit]
 
     def index
       @users =  User.all
@@ -32,7 +32,14 @@ module Admin
     end
 
     def destroy
-      @user.destroy
+      if Badge.find_by(user_id:@user.id)
+        badge =  Badge.find_by(user_id:@user.id)
+        Notification.find_by(badge_id: badge.id).destroy if Notification.find_by(badge_id: badge.id)
+        badge.destroy
+        @user.destroy
+      else
+        @user.destroy
+      end
       redirect_to admin_users_path, notice: 'User was successfully Destroyed.'
     end
 
@@ -45,7 +52,7 @@ module Admin
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :shirt_size)
+      params.require(:user).permit(:name, :email, :password, :shirt_size, :avatar)
     end
   end
 end

@@ -9,6 +9,16 @@ class ApplicationController < ActionController::Base
     redirect_to event_main_url unless current_user
   end
 
+  def log_in(user)
+    session[:user_id] = user.id
+  end
+
+  def remember(user)
+    user.remember
+    cookies.permanent.signed[:user_id] = user.id
+    cookies.permanent[:remember_token] = user.remember_token
+  end
+
   def redirect_decisions
     @attendee = @event&.attendees&.find_by(user: current_user)
     @invitation = @event&.invitations&.find_by(user: current_user, event: @event)

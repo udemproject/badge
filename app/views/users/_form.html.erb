@@ -3,7 +3,23 @@
   <img class="card-img-top img-fluid uploadable-image" src="<%= @user.picture_url %>" alt="Profile Picture">
   <span class="plus">+</span>
 </div>
+
 <div class="card-block">
+
+  <% if @user.errors.any? %>
+      <div id="error_expl" class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= pluralize(@user.errors.count, "error") %> prohibited this article from being saved:</h3>
+        </div>
+        <div class="panel-body">
+          <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
 
   <%= form_for @user do |f| %>
     <%= f.attachment_field :avatar, class: 'hidden' %>

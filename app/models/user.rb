@@ -15,7 +15,7 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
+                    uniqueness: true
   validates :password, presence: true, length: { minimum: 6 }
   has_secure_password
   def overall_rank
@@ -29,6 +29,11 @@ class User < ApplicationRecord
     end
     ranks
   end
+
+  # def remember
+  #   self.remember_token = User.new_token
+  #   update_attribute(:remember_digest, User.digest(remember_token))
+  # end
 
   def picture_url
     return avatar_url unless avatar_id.blank?

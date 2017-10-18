@@ -9,13 +9,15 @@ class SessionsController < ApplicationController
   end
 
   def new
-    redirect_to new_user_path if current_user
+    redirect_to user_path  if current_user
   end
 
   def create2
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
+      # log_in(user)
+      # remember(user)
       redirect_to user_path(user)
       # Log the user in and redirect to the user's show page.
     else
