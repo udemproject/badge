@@ -9,15 +9,18 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
-//= require jquery
+
+//= require jquery3
+//= require popper
+//= require bootstrap
 //= require jquery_ujs
-//= require tether
-//= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+//= require tether
 //= require_tree ./channels
 //= require src/rating
+
+$(function(){ $(document).foundation(); });
 
 $('.uploadable-image').click(function(){
   $('#user_avatar').click();

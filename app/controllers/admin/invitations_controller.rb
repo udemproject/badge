@@ -15,9 +15,8 @@ module Admin
     end
 
     def create
-      @location = Location.new(location_params)
-      if @location.save
-        redirect_to action: show, id: @location.id, notice: 'Location was successfully created.'
+      @invitation = Invitation.new(location_params)
+      if @invitation.save
       else
         render :new
       end
@@ -25,19 +24,17 @@ module Admin
 
     def destroy
       @Invitation.destroy
-      redirect_to admin_locations_path, notice: 'Invitation was successfully Destroyed.'
+      flash[:notice] = 'Se borro la invitacion'
     end
 
     private
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_invitation
       @invitation = Invitation.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
-    def location_params
-      params.require(:location).permit(:name, :gmaps_url, :address)
+    def invitation_params
+      params.require(:invitation).permit(:user_id, :event_id, :status)
     end
   end
 end

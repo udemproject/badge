@@ -3,14 +3,17 @@ ruby '2.4.1'
 
 gem 'simple_form'
 # gem 'administrate-field-json', github: 'eddietejeda/administrate-field-json', branch: 'master'
-gem 'administrate'
-gem 'administrate-field-enum'
-gem 'administrate-field-image'
-gem 'administrate-field-json'
-gem 'administrate-field-refile'
-gem 'administrate-field-telephone'
-gem 'administrate-field-time'
-gem 'bootstrap', '~> 4.0.0.alpha3'
+# gem 'administrate'
+# gem 'administrate-field-enum'
+# gem 'administrate-field-image'
+# gem 'administrate-field-json'
+# gem 'administrate-field-refile'
+# gem 'administrate-field-telephone'
+# gem 'administrate-field-time'
+gem 'bootstrap'
+gem 'jquery-rails'
+gem 'autoprefixer-rails'
+gem 'sprockets-rails'
 gem 'bourbon'
 gem 'oj'
 gem 'omniauth-facebook'
@@ -23,6 +26,7 @@ gem 'rollbar'
 gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
 gem "omniauth"
 gem "omniauth-google-oauth2"
+gem 'foundation-rails'
 
 group :production do
   gem 'sidekiq'
@@ -35,7 +39,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.1'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets

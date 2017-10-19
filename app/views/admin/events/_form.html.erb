@@ -16,6 +16,12 @@
   <% end %>
 
   <div class="form-group">
+    <%unless @event.errors[:starts_at].empty?%>
+    <%=@event.errors[:starts_at].full_messages%>
+    <script type="text/javascript">
+      
+    </script>
+    <%end%>
     <%= f.label :location_id, class: 'control-label col-lg-2' %>
     <div class="col-lg-10">
         <%= f.collection_select :location_id, Location.all, :id, :name, {}, class: 'form-control' %>
