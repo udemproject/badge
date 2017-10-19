@@ -20,7 +20,6 @@
 //= require_tree ./channels
 //= require src/rating
 
-$(function(){ $(document).foundation(); });
 
 $('.uploadable-image').click(function(){
   $('#user_avatar').click();

@@ -1,5 +1,7 @@
 module Admin
-  class ApplicationController < ActionController::Base
+  class Admin::ApplicationController < ActionController::Base
+    layout 'application.html.erb'
+
     # http_basic_authenticate_with name: ENV['LOGIN_NAME'], password: ENV['LOGIN_PASSWORD']
     before_filter :default_params
 
