@@ -1,18 +1,24 @@
-
-<div class="large-4 columns">
-  <ul class="nav flex-column nav-pills" data-dropdown-menu style="max-width: 250px;" role="tablist">
-    <li class="nav-link" role="tab" aria-controls="v-pills-home"><%= link_to "Event", admin_events_path, class: "category"%></li>
-    <li class="nav-link active" role="tab" aria-controls="v-pills-home"><%= link_to "Attendes", admin_attendees_path, class: "category"%></li>
-    <li class="nav-link" role="tab" aria-controls="v-pills-home"><%= link_to "Profiles", admin_profiles_path, class: "category"%></li>
-    <li class="nav-link" role="tab" aria-controls="v-pills-home"><%= link_to "Teams", admin_teams_path, class: "category"%></li>
-    <li class="nav-link" role="tab" aria-controls="v-pills-home"><%= link_to "Users", admin_users_path, class: "category"%></li>
-    <li class="nav-link" role="tab" aria-controls="v-pills-home"><%= link_to "Reviews", admin_reviews_path, class: "category"%></li>
-    <li class="nav-link" role="tab" aria-controls="v-pills-home"><%= link_to "Badge", admin_badges_path, class: "category"%></li>
-  </ul>
-  <%= link_to "NEW", new_admin_attendee_path, class: "large-4 columns", align:"right" %>  
+<div class="row">
+  <div class="col-2 left">
+    <ul>
+      <a><%= link_to "Event", admin_events_path, class: "nav-link2 active"%></a>
+      <a><%= link_to "Attendes", admin_attendees_path, class: "nav-link2"%></a>
+      <a><%= link_to "Profiles", admin_profiles_path, class: "nav-link2"%></a>
+      <a><%= link_to "Teams", admin_teams_path, class: "nav-link2"%></a>
+      <a><%= link_to "Users", admin_users_path, class: "nav-link2"%></a>
+      <a><%= link_to "Reviews", admin_reviews_path, class: "nav-link2"%></a>
+      <a><%= link_to "Badge", admin_badges_path, class: "nav-link2"%></a>
+    </ul>
 </div>
-<div class = 'row'>
-  <table class='stack'>
+<div class="col-10">
+  <h1 class="hbigger">Attendee</h1>
+</div>
+<div class="container">
+  <div class = 'row'>
+    <div class="col-sm-4 offset-sm-1">
+  <%= link_to "NEW", new_admin_attendee_path, class: "btn btn-primary btn-block" %>
+  </div>
+  <table class='table'>
     <thead>
       <tr>
         <th width="300"> Id</th>

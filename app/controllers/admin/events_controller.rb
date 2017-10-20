@@ -33,6 +33,7 @@ module Admin
 
     def destroy
       @event.destroy
+      flash[:notice] = 'Se borro la Evento'
       redirect_to admin_events_path, notice: 'Event was successfully Destroyed.'
     end
 

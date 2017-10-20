@@ -12,11 +12,28 @@ $disruptive-blue: #469cb6;
 .front-page {
   text-align: center;
 }
+.nav-link2 {
+    display: block;
+    padding: 0;
+}
+.red{
+  color: red;
+}
 
 .alert {
   margin-top: 20px;
 }
+.container_edit{
 
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.4), 0 4px 20px rgba(0, 0, 0, 0.33);
+  margin: 25px auto;
+  max-width: 950px;
+}
+.hbigger{
+  font-size: 7.5rem;
+  color: royalblue;
+
+}
 .card-form {
   box-shadow: 0 0 0 5px $shadow1, 0 4px 20px $shadow2;
   margin: 25px auto;

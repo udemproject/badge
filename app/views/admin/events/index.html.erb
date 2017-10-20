@@ -1,33 +1,43 @@
-<ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 250px;">
-  <li><%= link_to "Event", admin_events_path, class: "category"%></li>
-  <li><%= link_to "Attendes", admin_attendees_path, class: "category"%></li>
-  <li><%= link_to "Profiles", admin_profiles_path, class: "category"%></li>
-  <li><%= link_to "Teams", admin_teams_path, class: "category"%></li>
-  <li><%= link_to "Users", admin_users_path, class: "category"%></li>
-  <li><%= link_to "reviews", admin_reviews_path, class: "category"%></li>
-  <li><%= link_to "Badge", admin_badges_path, class: "category"%></li>
-</ul>
+<div class="row">
+  <div class="col-2 left">
+    <ul>
+      <a><%= link_to "Event", admin_events_path, class: "nav-link2 active"%></a>
+      <a><%= link_to "Attendes", admin_attendees_path, class: "nav-link2"%></a>
+      <a><%= link_to "Profiles", admin_profiles_path, class: "nav-link2"%></a>
+      <a><%= link_to "Teams", admin_teams_path, class: "nav-link2"%></a>
+      <a><%= link_to "Users", admin_users_path, class: "nav-link2"%></a>
+      <a><%= link_to "Reviews", admin_reviews_path, class: "nav-link2"%></a>
+      <a><%= link_to "Badge", admin_badges_path, class: "nav-link2"%></a>
+    </ul>
+</div>
+<div class="col-10">
+  <h1 class="hbigger">Events</h1>
+</div>
+<div class="container">
+  <div class = 'row'>
+    <div class="col-sm-4 offset-sm-1">
+      <a><%= link_to "New Event", new_admin_event_path, class: "btn btn-primary btn-block"%></a>
+    </div>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th width="150"> Name</th>
+          <th width="150"> Date </th>
+          <th width="150"> Edit</th>
+          <th width="150"> Destroy</th>
+        </tr>
+      </thead>
 
-<div class = 'row'>
-  <table class='stack'>
-    <thead>
-      <tr>
-        <th width="300"> Name</th>
-        <th width="150"> Date </th>
-        <th width="150"> Edit</th>
-        <th width="150"> Destroy</th>
-      </tr>
-    </thead>
-
-    <% @events.each do |event|%>
-    <tbody>
-      <tr>
-        <td><%= event.id%></td>
-        <td><%= event.name%></td>
-        <td><%= link_to "Edit", edit_admin_event_path(slug: event.slug), class: "category" %></td>
-        <td><%= link_to 'Delete',{ action: :destroy, slug: event.slug }, method: :delete , data: { confirm: 'Are you sure?' }, class: "category" %></td>
-      </tr>
-    </tbody>
-    <%end%>
-  </table>
+      <% @events.each do |event|%>
+      <tbody>
+        <tr>
+          <td><%= event.name%></td>
+          <td><%= event.starts_at.strftime("%m/%d/%Y")%>-to-<%= event.finishes_at.strftime("%m/%d/%Y")%> </td>
+          <td><%= link_to "Edit", edit_admin_event_path(slug: event.slug), class: "category" %></td>
+          <td><%= link_to 'Delete',{ action: :destroy, slug: event.slug }, method: :delete , data: { confirm: 'Are you sure?' }, class: "category" %></td>
+        </tr>
+      </tbody>
+      <%end%>
+    </table>
+  </div>
 </div>

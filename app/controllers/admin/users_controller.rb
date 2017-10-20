@@ -14,7 +14,10 @@ module Admin
 
     def update
       if @user.update(user_params)
-        redirect_to admin_users_path, notice: 'User was successfully updated.'
+        a = "<div class='alert alert-primary' role='alert'>Give it a click if you like.</div>"
+        flash[:notice] = 'User was successfully updated.'
+        render inline: a
+        redirect_to admin_users_path
       else
         render :edit
       end
@@ -25,7 +28,8 @@ module Admin
     def create
       @user = User.new(user_params)
       if @user.save
-        redirect_to admin_users_path, notice: 'User was successfully created.'
+        flash.keep[:notice] = 'User was successfully updated.'
+        redirect_to admin_users_path
       else
         render :new
       end
@@ -40,7 +44,8 @@ module Admin
       else
         @user.destroy
       end
-      redirect_to admin_users_path, notice: 'User was successfully Destroyed.'
+      flash.keep[:notice] = 'User was successfully deleted.'
+      redirect_to admin_users_path, notice: 'User was successfully updated.'
     end
 
     private

@@ -1,12 +1,15 @@
-<ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 250px;">
-  <li><%= link_to "Event", admin_events_path, class: "category"%></li>
-  <li><%= link_to "Attendes", admin_attendees_path, class: "category"%></li>
-  <li><%= link_to "Profiles", admin_profiles_path, class: "category"%></li>
-  <li><%= link_to "Teams", admin_teams_path, class: "category"%></li>
-  <li><%= link_to "Users", admin_users_path, class: "category"%></li>
-  <li><%= link_to "reviews", admin_reviews_path, class: "category"%></li>
-  <li><%= link_to "Badge", admin_badges_path, class: "category"%></li>
-</ul>
+<div class="row">
+  <div class="col-2">
+    <ul class="left" data-dropdown-menu style="max-width: 250px;">
+      <a><%= link_to "Event", admin_events_path, class: "nav-link2 active"%></a>
+      <a><%= link_to "Attendes", admin_attendees_path, class: "nav-link2"%></a>
+      <a><%= link_to "Profiles", admin_profiles_path, class: "nav-link2"%></a>
+      <a><%= link_to "Teams", admin_teams_path, class: "nav-link2"%></a>
+      <a><%= link_to "Users", admin_users_path, class: "nav-link2"%></a>
+      <a><%= link_to "Reviews", admin_reviews_path, class: "nav-link2"%></a>
+      <a><%= link_to "Badge", admin_badges_path, class: "nav-link2"%></a>
+    </ul>
+  </div>
 
 <div class = 'row'>
   <table class='stack'>
