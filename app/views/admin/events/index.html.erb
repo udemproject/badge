@@ -2,6 +2,7 @@
   <div class="col-2 left">
     <ul>
       <a><%= link_to "Event", admin_events_path, class: "nav-link2 active"%></a>
+        <a><%= link_to "Locations", admin_locations_path, class: "nav-link2"%></a>
       <a><%= link_to "Attendes", admin_attendees_path, class: "nav-link2"%></a>
       <a><%= link_to "Profiles", admin_profiles_path, class: "nav-link2"%></a>
       <a><%= link_to "Teams", admin_teams_path, class: "nav-link2"%></a>
@@ -21,6 +22,7 @@
     <table class='table'>
       <thead>
         <tr>
+          <th width="150"> Picture</th>
           <th width="150"> Name</th>
           <th width="150"> Date </th>
           <th width="150"> Edit</th>
@@ -31,6 +33,7 @@
       <% @events.each do |event|%>
       <tbody>
         <tr>
+          <td><%= image_tag attachment_url(event, :image), size:"200" unless event.image.blank?%></td>
           <td><%= event.name%></td>
           <td><%= event.starts_at.strftime("%m/%d/%Y")%>-to-<%= event.finishes_at.strftime("%m/%d/%Y")%> </td>
           <td><%= link_to "Edit", edit_admin_event_path(slug: event.slug), class: "category" %></td>

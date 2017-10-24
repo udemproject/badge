@@ -1,7 +1,8 @@
 <div class="row">
-  <div class="col-2">
-    <ul class="left" data-dropdown-menu style="max-width: 250px;">
+  <div class="col-2 left">
+    <ul>
       <a><%= link_to "Event", admin_events_path, class: "nav-link2 active"%></a>
+      <a><%= link_to "Locations", admin_locations_path, class: "nav-link2"%></a>
       <a><%= link_to "Attendes", admin_attendees_path, class: "nav-link2"%></a>
       <a><%= link_to "Profiles", admin_profiles_path, class: "nav-link2"%></a>
       <a><%= link_to "Teams", admin_teams_path, class: "nav-link2"%></a>
@@ -9,27 +10,35 @@
       <a><%= link_to "Reviews", admin_reviews_path, class: "nav-link2"%></a>
       <a><%= link_to "Badge", admin_badges_path, class: "nav-link2"%></a>
     </ul>
-  </div>
+</div>
+<div class="col-10">
+  <h1 class="hbigger">Profile</h1>
+</div>
+<div class="container">
+  <div class = 'row'>
+    <div class="col-sm-4 offset-sm-1">
+      <a><%= link_to "New Event", new_admin_profile_path, class: "btn btn-primary btn-block"%></a>
+    </div>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th width="150"> Name</th>
+          <th width="150"> ID </th>
+          <th width="150"> Edit</th>
+          <th width="150"> Destroy</th>
+        </tr>
+      </thead>
 
-<div class = 'row'>
-  <table class='stack'>
-    <thead>
-      <tr>
-        <th width="300"> Id</th>
-        <th width="150"> Name </th>
-        <th width="150"> Edit </th>
-        <th width="150"> Delete </th>
-      </tr>
-    </thead>
-    <% @profiles.each do |profile|%>
-    <tbody>
-      <tr>
-        <td><%= profile.id%></td>
-        <td><%= profile.name%></td>
-        <td><%= link_to "Edit", edit_admin_profile_path(id: profile.id), class: "category" %></td>
-        <td><%= link_to 'Delete',{ action: :destroy, id: profile.id }, method: :delete , data: { confirm: 'Are you sure?' }, class: "category" %></td>
-      </tr>
-    </tbody>
-    <%end%>
-  </table>
+      <% @profiles.each do |profile|%>
+      <tbody>
+        <tr>
+          <td><%= profile.name%></td>
+          <td><%= profile.id%></td>
+          <td><%= link_to "Edit", edit_admin_profile_path(id: profile.id), class: "category" %></td>
+          <td><%= link_to 'Delete',{ action: :destroy, id: profile.id }, method: :delete , data: { confirm: 'Are you sure?' }, class: "category" %></td>
+        </tr>
+      </tbody>
+      <%end%>
+    </table>
+  </div>
 </div>

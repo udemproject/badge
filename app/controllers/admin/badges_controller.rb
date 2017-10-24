@@ -4,11 +4,15 @@ module Admin
 
     # GET /badge
     def index
-      @badge = Badge.all
+      @badges = Badge.all
     end
 
     # GET /badge/1
     def show
+    end
+
+    def new
+      @badge = Badge.new
     end
 
     # POST /badge

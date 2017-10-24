@@ -25,6 +25,10 @@ module Admin
     def create
       @event = Event.new(event_params)
       if @event.save
+        User.all.each do |user|
+          invitation = Invitation.new(user_id: user.id, event_id: @event.id)
+          invitation.save
+        end
         redirect_to action: show, slug: @event.slug, notice: 'Event was successfully created.'
       else
         render :new
@@ -46,7 +50,7 @@ module Admin
 
     # Only allow a trusted parameter "white list" through.
     def event_params
-      params.require(:event).permit(:name, :starts_at, :finishes_at, :location_id)
+      params.require(:event).permit(:name, :starts_at, :finishes_at, :location_id, :image)
     end
   end
 end

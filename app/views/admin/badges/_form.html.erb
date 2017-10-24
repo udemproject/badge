@@ -1,18 +1,3 @@
-<%#
-# Form Partial
-
-This partial is rendered on a resource's `new` and `edit` pages,
-and renders all form fields for a resource's editable attributes.
-
-## Local variables:
-
-- `page`:
-  An instance of [Administrate::Page::Form][1].
-  Contains helper methods to display a form,
-  and knows which attributes should be displayed in the resource's form.
-
-[1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Form
-%>
 <%= form_for [:admin, @badge], html: { class: "form" } do |f| %>
 <% if @badge.errors.any? %>
   <div id="error_expl" class="panel panel-danger">
@@ -30,9 +15,10 @@ and renders all form fields for a resource's editable attributes.
 <% end %>
 
   <div class="form-group">
-  <%= f.label :user_id %>
-  <div class="col-lg-10">
-    <%= f.collection_select(:user_id, @user, :id , :name) %>
+    <%= f.label :user_id %>
+    <div class="col-lg-10">
+        <%= f.collection_select :user_id, User.all, :id, :name, {}, class: 'form-control' %>
+    </div>
   </div>
 
   <div class="form-group">

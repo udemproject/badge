@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @invitations = Invitation.where(user_id:@user.id, status: "pending")
   end
 
   def index

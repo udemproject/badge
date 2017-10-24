@@ -14,9 +14,6 @@ module Admin
 
     def update
       if @user.update(user_params)
-        a = "<div class='alert alert-primary' role='alert'>Give it a click if you like.</div>"
-        flash[:notice] = 'User was successfully updated.'
-        render inline: a
         redirect_to admin_users_path
       else
         render :edit
@@ -29,6 +26,10 @@ module Admin
       @user = User.new(user_params)
       if @user.save
         flash.keep[:notice] = 'User was successfully updated.'
+        Event.where('starts_at <= ?', Date.today).each do |event|
+          invitation = Invitation.new(user_id: @user.id, event_id: event.id)
+          invitation.save
+        end
         redirect_to admin_users_path
       else
         render :new

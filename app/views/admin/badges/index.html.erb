@@ -1,24 +1,50 @@
-<% content_for(:title) do %>
-  <%= display_resource_name(page.resource_name) %>
-<% end %>
-
-<% content_for(:search) do %>
-  <% if show_search_bar %>
-    <%= render "search", search_term: search_term %>
-  <% end %>
-<% end %>
-
-<header class="header">
-  <h1 class="header__heading" id="page-title"><%= content_for(:title) %></h1>
-  <div class="header__actions">
-    <%= link_to(
-      "#{t("administrate.actions.new")} #{page.resource_name.titleize.downcase}",
-      [:new, namespace, page.resource_name],
-      class: "button",
-    ) if valid_action? :new %>
+<div class="row">
+  <div class="col-2">
+    <ul class="left" data-dropdown-menu style="max-width: 250px;">
+      <a><%= link_to "Event", admin_events_path, class: "nav-link2 active"%></a>
+      <a><%= link_to "Locations", admin_locations_path, class: "nav-link2"%></a>
+      <a><%= link_to "Attendes", admin_attendees_path, class: "nav-link2"%></a>
+      <a><%= link_to "Profiles", admin_profiles_path, class: "nav-link2"%></a>
+      <a><%= link_to "Teams", admin_teams_path, class: "nav-link2"%></a>
+      <a><%= link_to "Users", admin_users_path, class: "nav-link2"%></a>
+      <a><%= link_to "Reviews", admin_reviews_path, class: "nav-link2"%></a>
+      <a><%= link_to "Badge", admin_badges_path, class: "nav-link2"%></a>
+    </ul>
   </div>
-</header>
+  <div class="col-10">
+    <h1 class="hbigger">Badge</h1>
+  </div>
+</div>
 
-<%= render "collection", collection_presenter: page, resources: resources %>
-
-<%= paginate resources %>
+<div class="container">
+<div class = 'row'>
+<div class="col-sm-4 offset-sm-1">
+  <a><%= link_to "New Badge", new_admin_badge_path, class: "btn btn-primary btn-block"%></a>
+</div>
+<table class='table'>
+  <thead>
+    <tr>
+      <th width="150"> Id</th>
+      <th width="150"> Name </th>
+      <th width="150"> Message </th>
+      <th width="150"> Sound </th>
+      <th width="150"> Edit </th>
+      <th width="150"> Delete </th>
+    </tr>
+  </thead>
+  <% @badges.each do |badge|%>
+  <tbody>
+    <tr>
+      <td><%= badge.id%></td>
+      <%user = User.find(id:badge.user_id)%>
+      <td><%= user.name%></td>
+      <td><%= badge.message%></td>
+      <td><%= badge.sound%></td>
+      <td><%= link_to "Edit", edit_admin_badge_path(id: badge.id), class: "category" %></td>
+      <td><%= link_to 'Delete',{ action: :destroy, id: badge.id }, method: :delete , data: { confirm: 'Are you sure?' }, class: "category" %></td>
+    </tr>
+  </tbody>
+  <%end%>
+</table>
+</div>
+</div>

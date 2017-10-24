@@ -36,18 +36,21 @@
   </div>
 </div>
 </div>
-<div class="card-block" height="70" >
+<div class="card-block card" height="70" >
   <h1>Pending invitations</h1>
   <div class="card" style="width: 20rem;">
+    <% @invitations.each do |invitation|%>
+    <%event = Event.find(id:invitation.event_id)%>
     <img class="card-img-top" src="..." alt="Card image cap">
     <div class="card-block">
       <h4 class="card-title">Event</h4>
       <p class="card-text">dates and info about the event</p>
       <a href="#" class="btn btn-primary">go to</a>
     </div>
+    <%end%>
   </div>
 </div>
-<div class="card-block" height="70">
+<div class="card-block card" height="70">
   <h1>current invitations</h1>
   <div class="card" style="width: 20rem;">
     <img class="card-img-top" src="..." alt="Card image cap">

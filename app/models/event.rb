@@ -11,7 +11,7 @@ class Event < ApplicationRecord
   has_many :users, through: :attendees, dependent: :destroy
   has_many :invited_users, through: :invitations, class_name: 'User', source: :user
   has_many :reviews, -> { where.not(answer: nil) }
-  attachment :image
+  attachment :image, content_type: ["image/jpeg", "image/png"]
   attachment :agenda_image
 
   after_update :send_review_mail, if: :review?
