@@ -7,7 +7,6 @@
       <a><%= link_to "Profiles", admin_profiles_path, class: "nav-link2"%></a>
       <a><%= link_to "Teams", admin_teams_path, class: "nav-link2"%></a>
       <a><%= link_to "Users", admin_users_path, class: "nav-link2"%></a>
-      <a><%= link_to "Reviews", admin_reviews_path, class: "nav-link2"%></a>
       <a><%= link_to "Badge", admin_badges_path, class: "nav-link2"%></a>
     </ul>
   </div>
@@ -27,7 +26,6 @@
       <th width="150"> Id</th>
       <th width="150"> Name </th>
       <th width="150"> Message </th>
-      <th width="150"> Sound </th>
       <th width="150"> Edit </th>
       <th width="150"> Delete </th>
     </tr>
@@ -36,10 +34,8 @@
   <tbody>
     <tr>
       <td><%= badge.id%></td>
-      <%user = User.find(id:badge.user_id)%>
-      <td><%= user.name%></td>
+      <td><%= badge.attendee.user.name%></td>
       <td><%= badge.message%></td>
-      <td><%= badge.sound%></td>
       <td><%= link_to "Edit", edit_admin_badge_path(id: badge.id), class: "category" %></td>
       <td><%= link_to 'Delete',{ action: :destroy, id: badge.id }, method: :delete , data: { confirm: 'Are you sure?' }, class: "category" %></td>
     </tr>

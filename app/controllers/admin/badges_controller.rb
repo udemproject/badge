@@ -28,9 +28,8 @@ module Admin
     # PATCH/PUT /badge/1
     def update
       if @badge.update(badge_params)
-        render json: @badge
       else
-        render json: @badge.errors, status: :unprocessable_entity
+        render :edit
       end
     end
 
@@ -47,7 +46,7 @@ module Admin
 
       # Only allow a trusted parameter "white list" through.
       def badge_params
-        params.require(:badge).permit(:user_id, :message, :sound)
+        params.require(:badge).permit(:attendee_id, :message)
       end
   end
 end

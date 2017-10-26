@@ -15,24 +15,17 @@
 <% end %>
 
   <div class="form-group">
-    <%= f.label :user_id %>
+    <%= f.label :attendee_id %>
     <div class="col-lg-10">
-        <%= f.collection_select :user_id, User.all, :id, :name, {}, class: 'form-control' %>
+        <%= f.collection_select :attendee_id, Attendee.all, :id, :names, class: 'form-control' %>
     </div>
   </div>
 
   <div class="form-group">
   <%= f.label :message %>
   <div class="col-lg-10">
-    <%= f.text_field :message %>
+    <%= f.select(:message, Badge.messages.keys.map {|messages| [messages.titleize,messages]})  %>
   </div>
-
-  <div class="form-group">
-  <%= f.label :sound %>
-  <div class="col-lg-10">
-    <%= f.text_field :sound %>
-  </div>
-
   <div class="form-group">
       <div class="col-lg-offset-2 col-lg-10">
         <%= f.submit nil, class: 'btn btn-primary' %>

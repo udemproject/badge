@@ -6,14 +6,14 @@ module Admin
     end
 
     def new
-      @profiles =  Profile.new
+      @profile =  Profile.new
     end
 
     def edit; end
 
     def update
-      if @profiles.update(profiles_params)
-        redirect_to admin_attendees_path, notice: 'Attendee was successfully updated.'
+      if @profile.update(profiles_params)
+        redirect_to admin_profiles_path, notice: 'Attendee was successfully updated.'
       else
         render :edit
       end
@@ -22,9 +22,9 @@ module Admin
     def show; end
 
     def create
-      @profiles = Profile.new(profiles_params)
-      if @profiles.save
-        redirect_to admin_attendee, notice: 'Profile was successfully created.'
+      @profile = Profile.new(profiles_params)
+      if @profile.save
+        redirect_to admin_profiles_path, notice: 'Profile was successfully created.'
       else
         render :new
       end
@@ -32,19 +32,19 @@ module Admin
 
     def destroy
       @profiles.destroy
-      redirect_to admin_attendees_path, notice: 'Card was successfully Destroyed.'
+      redirect_to admin_profiles_path, notice: 'Card was successfully Destroyed.'
     end
 
     private
 
     # Use callbacks to share common setup or constraints between actions.
     def set_profiles
-      @profiles = Profile.find(params[:id])
+      @profile = Profile.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def profiles_params
-      params.require(:set_attende).permit(:name)
+      params.require(:profile).permit(:name)
     end
 
   end

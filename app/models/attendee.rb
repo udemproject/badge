@@ -4,6 +4,19 @@ class Attendee < ApplicationRecord
   belongs_to :team, required: false
   after_update :notify_update
   after_create :notify_create
+  validates :event, presence: true
+  validate :validate_presence
+
+  def names
+    return self.user.name
+  end
+
+  def validate_presence
+    users=  self.event.users.all
+    if users.include? self.user
+      errors.add(:user, "user already exist in this event")
+    end
+  end
 
   private
 

@@ -24,7 +24,7 @@ module Admin
     def create
       @attendees = Attendee.new(attendee_params)
       if @attendees.save
-        redirect_to admin_attendee, notice: 'Attendee was successfully created.'
+        redirect_to admin_attendees_path, notice: 'Attendee was successfully created.'
       else
         render :new
       end
@@ -44,7 +44,7 @@ module Admin
 
     # Only allow a trusted parameter "white list" through.
     def attendee_params
-      params.require(:attendee).permit(:user_id, :event_id, :team_id)
+      params.require(:attendee).permit(:user_id, :event_id, :team_id, :profile_id)
     end
 
   end

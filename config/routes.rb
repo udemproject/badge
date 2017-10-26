@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     resources :locations
     resources :badges
     resources :notifications
+    get 'users/:id/editProfile', to: 'users#editProfile'
+    patch '/users/:id/prof', to:'users#updateProfile'
+    put '/users/:id/prof', to:'users#updateProfile'
     # get 'updated_at', to: 'badge#updated_at', as: 'update'
 
     root to: 'attendees#index'

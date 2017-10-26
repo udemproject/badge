@@ -1,0 +1,15 @@
+<div class="card">
+  <h1><%=@team.name%></h1>
+</div>
+<div class="card">
+
+</div>
+
+
+<%@team.attendees.all.each do |attendee|%>
+
+<%=attendee.id%>
+<%=Profile.find(attendee.profile_id).name unless attendee.profile_id.blank?%>
+<%=attendee.user.name%>
+
+<%end%>
