@@ -4,6 +4,11 @@ module Admin
 
     def index
       @teams =  Team.all
+      if params[:order]== "name"
+        @teams = Team.all.order(name: :asc)
+      elsif params[:order] == "name_event"
+        @teams = Team.all.sort_by{ |m| m.event.name.downcase }
+      end
     end
 
     def new

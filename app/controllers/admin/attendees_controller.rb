@@ -3,6 +3,11 @@ module Admin
     before_action :set_attende, only: %i[show update destroy edit]
     def index
       @attendees =  Attendee.all
+      if params[:order] == "name_user"
+        @attendees = Attendee.all.sort_by{ |m| m.user.name.downcase }
+      elsif params[:order] == "name_event"
+        @attendees = Attendee.all.sort_by{ |m| m.event.name.downcase }
+      end
     end
 
     def new

@@ -11,6 +11,14 @@ Rails.application.routes.draw do
     resources :locations
     resources :badges
     resources :notifications
+    get 'events/:order' =>'events#index',  as: 'events/asc'
+    get 'locations/:order' =>'locations#index',  as: 'locations/asc'
+    get 'attendees/:order' =>'attendees#index',  as: 'attendees/asc'
+    get 'teams/:order' =>'teams#index',  as: 'teams/asc'
+    get 'profiles/:order' =>'profiles#index',  as: 'profiles/asc'
+    get 'users/:order' =>'users#index',  as: 'users/asc'
+    get 'badges/:order' =>'badges#index',  as: 'badges/asc'
+    get 'notifications/:order' =>'notifications#index',  as: 'notifications/asc'
     get 'users/:id/editProfile', to: 'users#editProfile'
     patch '/users/:id/prof', to:'users#updateProfile'
     put '/users/:id/prof', to:'users#updateProfile'
@@ -28,8 +36,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create2'
   resources :users, only: [:show, :create, :edit, :update, :new]
   get 'user/invitations', to: 'users#invitations', as: 'invitations'
-  post 'user/invitations/accept/:id' => 'invitations#accept', as: 'accept_invitations'
-  post 'user/invitations/reject/:id' => 'invitations#reject', as: 'reject_invitations'
+  post 'user/invitations/accept/:id' => 'users#accept_invite', as: 'accept_invitations'
+  post 'user/invitations/reject/:id' => 'users#accept_reject', as: 'reject_invitations'
 
   root 'sessions#new'
 

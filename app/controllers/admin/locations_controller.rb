@@ -2,7 +2,11 @@ module Admin
   class LocationsController < Admin::ApplicationController
     before_action :set_location, only: [:show,  :update,  :destroy,  :edit]
     def index
-      @locations =  Location.all
+      @locations = Location.all
+      if params[:order] == "name"
+        @locations = Location.all.order(name: :asc)
+      elsif params[:order] == "id"
+      end
     end
 
     def new

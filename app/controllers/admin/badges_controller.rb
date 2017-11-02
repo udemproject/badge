@@ -5,6 +5,11 @@ module Admin
     # GET /badge
     def index
       @badges = Badge.all
+      if params[:order]=="id"
+        @badges = Badge.all.order(id: :asc)
+      elsif   params[:order]=="name"
+        @badges = Badge.all.sort_by{ |b| b.attendee.user.name.downcase }
+      end
     end
 
     # GET /badge/1
@@ -46,7 +51,7 @@ module Admin
 
       # Only allow a trusted parameter "white list" through.
       def badge_params
-        params.require(:badge).permit(:attendee_id, :message)
+        params.require(:badge).permit(:attendee_id, :dns)
       end
   end
 end

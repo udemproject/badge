@@ -7,7 +7,6 @@
       <a><%= link_to "Profiles", admin_profiles_path, class: "nav-link2"%></a>
       <a><%= link_to "Teams", admin_teams_path, class: "nav-link2"%></a>
       <a><%= link_to "Users", admin_users_path, class: "nav-link2"%></a>
-      <a><%= link_to "Reviews", admin_reviews_path, class: "nav-link2"%></a>
       <a><%= link_to "Badge", admin_badges_path, class: "nav-link2"%></a>
     </ul>
 </div>
@@ -22,8 +21,8 @@
     <table class='table'>
       <thead>
         <tr>
-          <th width="150"> Name</th>
-          <th width="150"> ID </th>
+          <th width="150"> Id </th>
+          <th width="150"> <%= link_to "Name", admin_profiles_path(order:"name"), class: "category" %></th>
           <th width="150"> Edit</th>
           <th width="150"> Destroy</th>
         </tr>
@@ -32,8 +31,8 @@
       <% @profiles.each do |profile|%>
       <tbody>
         <tr>
-          <td><%= profile.name%></td>
           <td><%= profile.id%></td>
+          <td><%= profile.name%></td>
           <td><%= link_to "Edit", edit_admin_profile_path(id: profile.id), class: "category" %></td>
           <td><%= link_to 'Delete',{ action: :destroy, id: profile.id }, method: :delete , data: { confirm: 'Are you sure?' }, class: "category" %></td>
         </tr>

@@ -5,7 +5,8 @@ class Attendee < ApplicationRecord
   after_update :notify_update
   after_create :notify_create
   validates :event, presence: true
-  validate :validate_presence
+  validate :validate_presence, on: [:new, :create]
+  validate :validate_presence_update, on: [:edit, :update]
 
   def names
     return self.user.name
@@ -14,10 +15,19 @@ class Attendee < ApplicationRecord
   def validate_presence
     users=  self.event.users.all
     if users.include? self.user
-      errors.add(:user, "user already exist in this event")
+        errors.add(:user, "user already exist in this event")
     end
   end
 
+  def validate_presence_update
+    users=  self.event.users.all
+    if users.include? self.user
+      compare = self.event.attendees.all
+      unless compare.include? self
+        errors.add(:user, "already exist in this event")
+      end
+    end
+  end
   private
 
   def notify_create

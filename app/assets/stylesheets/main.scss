@@ -20,6 +20,26 @@ $disruptive-blue: #469cb6;
   color: red;
 }
 
+.enjoy-css {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: auto;
+  height: auto;
+  padding: 5px;
+  overflow: hidden;
+  border: 5px solid;
+  margin: 1 1 1 1 ;
+  color: rgba(255,255,255,1);
+  text-align: center;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  background: rgba(71,81,80,0.33);
+  -webkit-box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3) ;
+  box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3) ;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
+}
+
 .alert {
   margin-top: 20px;
 }
@@ -30,8 +50,9 @@ $disruptive-blue: #469cb6;
   max-width: 950px;
 }
 .hbigger{
-  font-size: 7.5rem;
+  font-size: 4.5rem;
   color: royalblue;
+  font-family: 'Roboto', sans-serif;
 
 }
 .card-form {

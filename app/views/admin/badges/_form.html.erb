@@ -22,6 +22,21 @@
   </div>
 
   <div class="form-group">
+    <%unless @event.errors[:dns].empty?%>
+    <div class="form-group">
+    <p class="red">DNS <%=@event.errors[:dns][0]%></p>
+    </div>
+    <script type="text/javascript">
+
+    </script>
+    <%end%>
+    <%= f.label "Dns to badge", class: 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :dns, class: 'form-control' %>
+    </div>
+    </div>
+
+  <div class="form-group">
   <%= f.label :message %>
   <div class="col-lg-10">
     <%= f.select(:message, Badge.messages.keys.map {|messages| [messages.titleize,messages]})  %>

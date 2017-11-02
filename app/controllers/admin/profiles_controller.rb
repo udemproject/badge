@@ -3,6 +3,9 @@ module Admin
     before_action :set_profiles, only: %i[show update destroy edit]
     def index
       @profiles =  Profile.all
+      if params[:order] == "name"
+        @profiles = Profile.all.order(name: :asc)
+      end
     end
 
     def new

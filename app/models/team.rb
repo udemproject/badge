@@ -3,6 +3,19 @@ class Team < ApplicationRecord
   has_many :attendees, -> { joins(:event) }
   has_many :profiles, through: :attendees
   has_many :users, through: :attendees
+  validate :name_available
+
+
+  def name_available
+    all = self.event.teams.all
+    names = []
+    all.each do |att|
+      names.push(att.name)
+    end
+    if names.include? self.name
+      errors.add(:name, "Enter name that hasnt beign use in this event")
+    end
+  end
 
   def available_profile?(profile)
     profiles[profile].present? && profiles[profile] > 0

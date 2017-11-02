@@ -4,6 +4,9 @@ module Admin
 
     def index
       @events = Event.all
+      if params[:order] == "name"
+        @events = Event.all.order(name: :asc)
+      end
     end
 
     def new

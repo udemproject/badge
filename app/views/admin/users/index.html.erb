@@ -1,12 +1,12 @@
   <div class="row">
     <div class="col-2">
-      <ul class="left" data-dropdown-menu style="max-width: 250px;">
-        <a><%= link_to "Event", admin_events_path, class: "nav-link2 active"%></a>
+      <ul class="w3-sidebar w3-bar-block" data-dropdown-menu style="max-width: 250px;">
+        <a><%= link_to "Event", admin_events_path, class: "w3-bar-item w3-button"%></a>
+        <a><%= link_to "Locations", admin_locations_path, class: "nav-link2"%></a>
         <a><%= link_to "Attendes", admin_attendees_path, class: "nav-link2"%></a>
         <a><%= link_to "Profiles", admin_profiles_path, class: "nav-link2"%></a>
         <a><%= link_to "Teams", admin_teams_path, class: "nav-link2"%></a>
         <a><%= link_to "Users", admin_users_path, class: "nav-link2"%></a>
-        <a><%= link_to "Reviews", admin_reviews_path, class: "nav-link2"%></a>
         <a><%= link_to "Badge", admin_badges_path, class: "nav-link2"%></a>
       </ul>
     </div>
@@ -23,8 +23,9 @@
   <table class='table'>
     <thead>
       <tr>
-        <th width="150"> Id</th>
-        <th width="150"> Name </th>
+        <th width="150"><%= link_to "Id", admin_users_path(order:"id"), class: "category" %></th></th>
+        <th width="150"><%= link_to "Name", admin_users_path(order:"name"), class: "category" %></th>
+        <th width="150"><%= link_to "Email", admin_users_path(order:"email"), class: "category" %></th> </th>
         <th width="150"> Edit </th>
         <th width="150"> Delete </th>
       </tr>
@@ -34,6 +35,7 @@
       <tr>
         <td><%= user.id%></td>
         <td><%= user.name%></td>
+        <td><%= user.email%></td>
         <td><%= link_to "Edit", edit_admin_user_path(id: user.id), class: "category" %></td>
         <td><%= link_to 'Delete',{ action: :destroy, id: user.id }, method: :delete , data: { confirm: 'Are you sure?' }, class: "category" %></td>
       </tr>

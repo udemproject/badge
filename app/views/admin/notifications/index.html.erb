@@ -12,35 +12,33 @@
     </ul>
   </div>
   <div class="col-10">
-    <h1 class="hbigger">Badge</h1>
+    <h1 class="hbigger">Notification</h1>
   </div>
 </div>
 
 <div class="container">
 <div class = 'row'>
 <div class="col-sm-4 offset-sm-1">
-  <a><%= link_to "New Badge", new_admin_badge_path, class: "btn btn-primary btn-block"%></a>
+  <a><%= link_to "New Badge", new_admin_notification_path, class: "btn btn-primary btn-block"%></a>
 </div>
 <table class='table'>
   <thead>
     <tr>
-      <th width="150"> <%= link_to "Id", admin_badges_path(order:"id"), class: "category" %></th>
-      <th width="150">  <%= link_to "Name", admin_badges_path(order:"name"), class: "category" %></th>
-      <th width="150"> Dns </th>
+      <th width="150"> <%= link_to "Id", admin_notifications_path(order:"id"), class: "category" %></th>
+      <th width="150">  <%= link_to "Name", admin_notifications_path(order:"name"), class: "category" %></th>
       <th width="150"> Message </th>
       <th width="150"> Edit </th>
       <th width="150"> Delete </th>
     </tr>
   </thead>
-  <% @badges.each do |badge|%>
+  <% @notifications.each do |notification|%>
   <tbody>
     <tr>
-      <td><%= badge.id%></td>
-      <td><%= badge.attendee.user.name%></td>
-      <td><%= badge.dns%></td>
-      <td><%= badge.notifications.last.message_sent unless badge.notifications.last.blank? %></td>
-      <td><%= link_to "Edit", edit_admin_badge_path(id: badge.id), class: "category" %></td>
-      <td><%= link_to 'Delete',{ action: :destroy, id: badge.id }, method: :delete , data: { confirm: 'Are you sure?' }, class: "category" %></td>
+      <td><%= notification.id%></td>
+      <td><%= notification.badge.attendee.user.name%></td>
+      <td><%= notification.message_sent%></td>
+      <td><%= link_to "Edit", edit_admin_notification_path(id: notification.id), class: "category" %></td>
+      <td><%= link_to 'Delete',{ action: :destroy, id: notification.id }, method: :delete , data: { confirm: 'Are you sure?' }, class: "category" %></td>
     </tr>
   </tbody>
   <%end%>

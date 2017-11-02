@@ -2,12 +2,13 @@
   <div class="col-2 left">
     <ul>
       <a><%= link_to "Event", admin_events_path, class: "nav-link2 active"%></a>
-        <a><%= link_to "Locations", admin_locations_path, class: "nav-link2"%></a>
+      <a><%= link_to "Locations", admin_locations_path, class: "nav-link2"%></a>
       <a><%= link_to "Attendes", admin_attendees_path, class: "nav-link2"%></a>
       <a><%= link_to "Profiles", admin_profiles_path, class: "nav-link2"%></a>
       <a><%= link_to "Teams", admin_teams_path, class: "nav-link2"%></a>
       <a><%= link_to "Users", admin_users_path, class: "nav-link2"%></a>
       <a><%= link_to "Badge", admin_badges_path, class: "nav-link2"%></a>
+      <a><%= link_to "Notification", admin_notifications_path, class: "nav-link2"%></a>
     </ul>
 </div>
 <div class="col-10">
@@ -22,7 +23,7 @@
       <thead>
         <tr>
           <th width="150"> Picture</th>
-          <th width="150"> Name</th>
+          <th width="150"> <%= link_to "Name", admin_events_path(order:"name"), class: "category" %></th>
           <th width="150"> Date </th>
           <th width="150"> Edit</th>
           <th width="150"> Destroy</th>

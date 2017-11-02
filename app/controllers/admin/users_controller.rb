@@ -4,6 +4,13 @@ module Admin
 
     def index
       @users =  User.all
+      if params[:order]=="name"
+        @users = User.all.order(name: :asc)
+      elsif params[:order]=="id"
+        @users = User.all.order(id: :asc)
+      elsif params[:order]=="email"
+        @users = User.all.order(email: :asc)
+      end
     end
 
     def new

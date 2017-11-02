@@ -1,19 +1,32 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy, :edit]
+  before_action :set_invite, only: [:accept_invite, :reject_invite]
 
   def edit
   end
 
   def show
-    @invitations = Invitation.where(user_id:@user.id, status: "pending")
-  end
-
-  def index
-
+    @invitations = Invitation.where(user_id: @user.id, status: 'pending')
+    @invitations = @invitations.joins(:event).where('events.finishes_at >= ?', Date.today)
+    @events = @user.events
   end
 
   def new
     @user = User.new
+  end
+
+  def accept_invite
+    @invite.status= "accepted"
+    attendee = Attendee.new(user_id: @invite.user_id, event_id: @invite.event_id)
+    attendee.save
+    @invite.save
+    redirect_to user_path(id: @invite.user_id)
+  end
+
+  def accept_reject
+    @invite.status= "rejected"
+    @invite.save
+    redirect_to user_path(id: @invite.user_id)
   end
 
   def create
@@ -53,6 +66,10 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_invite
+    @invite = Invitation.find(params[:id])
   end
 
   def user_next_path

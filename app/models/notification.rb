@@ -1,5 +1,5 @@
 class Notification < ApplicationRecord
-  has_many :badges
+  belongs_to :badges
   enum weekday: [:monday, :tuestay, :wensday, :thursday, :friday, :saturday, :sunday]
-  enum message: [:inactivo, :color_rojo, :color_verde, :mensaje_cuatro, :friday, :saturday, :sunday]
+  enum message_sent: [:inactivo, :color_rojo, :color_verde, :mensaje_cuatro]
 end

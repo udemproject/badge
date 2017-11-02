@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171025193332) do
+ActiveRecord::Schema.define(version: 20171031034037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20171025193332) do
 
   create_table "badges", force: :cascade do |t|
     t.integer "attendee_id"
-    t.integer "message"
+    t.string  "dns"
     t.index ["attendee_id"], name: "index_badges_on_attendee_id", using: :btree
   end
 
@@ -72,11 +72,11 @@ ActiveRecord::Schema.define(version: 20171025193332) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "badge_id"
-    t.string   "message"
     t.time     "time"
-    t.string   "weekday"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "message_sent"
+    t.integer  "weekday"
     t.index ["badge_id"], name: "index_notifications_on_badge_id", using: :btree
   end
 

@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :invitations, dependent: :destroy
   has_many :accepted_invitations, -> { where(status: :accepted) }, class_name: 'Invitation'
   has_many :attendees, dependent: :destroy
+  has_many :events, through: :attendees,  dependent: :destroy
 
   has_many :reviewees, class_name: 'Review', foreign_key: 'reviewee_id'
   has_many :reviewers, class_name: 'Review', foreign_key: 'reviewer_id'
@@ -18,6 +19,7 @@ class User < ApplicationRecord
                     uniqueness: true
   validates :password, presence: true, length: { minimum: 6 }, on: [:create, :update]
   has_secure_password
+
   def overall_rank
     reviewees.average(:stars)
   end
