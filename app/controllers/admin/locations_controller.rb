@@ -6,6 +6,7 @@ module Admin
       if params[:order] == "name"
         @locations = Location.all.order(name: :asc)
       elsif params[:order] == "id"
+        @locations = Location.all.order(id: :asc)
       end
     end
 

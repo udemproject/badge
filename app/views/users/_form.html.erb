@@ -4,6 +4,13 @@
 <div class="card-block">
 
   <%= form_for @user do |f| %>
+    <div class="form-group">
+      <%= f.label "User image", class: 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+      <%= f.attachment_field :image %>
+      </div>
+    </div>
+
     <div class="form-group row">
         <%unless @user.errors[:name].empty?%>
           name <%=@user.errors[:name][0]%>

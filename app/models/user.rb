@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :reviewees, class_name: 'Review', foreign_key: 'reviewee_id'
   has_many :reviewers, class_name: 'Review', foreign_key: 'reviewer_id'
   has_many :questions, through: :reviewees,  dependent: :destroy
+  attachment :image, content_type: ["image/jpeg", "image/png"]
 
   enum shirt_size: [:s, :m, :l, :xl]
   enum role: [:user, :admin]

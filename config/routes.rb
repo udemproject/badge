@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :create, :edit, :update, :new]
   get 'user/invitations', to: 'users#invitations', as: 'invitations'
   post 'user/invitations/accept/:id' => 'users#accept_invite', as: 'accept_invitations'
-  post 'user/invitations/reject/:id' => 'users#accept_reject', as: 'reject_invitations'
+  post 'user/invitations/reject/:id' => 'users#reject_invite', as: 'reject_invitations'
 
   root 'sessions#new'
 

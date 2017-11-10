@@ -17,6 +17,17 @@ module Admin
     end
 
     def new
+      @notification = []
+      @badges = Badge.all
+      # acabar esto mañana
+      if params[:select]=="all"
+        event  =  Event.find(params[:event_id])
+
+      elsif params[:select]=="team"
+
+
+      end
+      @notification << Notification.new
       @notification = Notification.new
     end
 

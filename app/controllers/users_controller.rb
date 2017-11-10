@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     redirect_to user_path(id: @invite.user_id)
   end
 
-  def accept_reject
+  def reject_invite
     @invite.status= "rejected"
     @invite.save
     redirect_to user_path(id: @invite.user_id)
@@ -32,6 +32,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      event = Event.all.where('events.finishes_at >= ?', Date.today)
+      event.each do |events|
+        a = Invitation.new(user_id: @user.id, event_id: events.id)
+        a.save
+      end
       # log_in(@user)
       # remember(@user)
       redirect_to user_path(id: @user.id), notice: 'User was successfully created.'

@@ -22,9 +22,9 @@
   </div>
 
   <div class="form-group">
-    <%unless @event.errors[:dns].empty?%>
+    <%unless @badge.errors[:dns].empty?%>
     <div class="form-group">
-    <p class="red">DNS <%=@event.errors[:dns][0]%></p>
+    <p class="red">DNS <%=@badge.errors[:dns][0]%></p>
     </div>
     <script type="text/javascript">
 
@@ -37,9 +37,9 @@
     </div>
 
   <div class="form-group">
-  <%= f.label :message %>
+  <%= f.label :messages %>
   <div class="col-lg-10">
-    <%= f.select(:message, Badge.messages.keys.map {|messages| [messages.titleize,messages]})  %>
+    <%= f.select(:message_sent, Badge.notifications.keys.map {|messages| [messages..titleize,messages]})  %>
   </div>
   <div class="form-group">
       <div class="col-lg-offset-2 col-lg-10">
