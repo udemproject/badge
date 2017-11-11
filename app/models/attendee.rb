@@ -29,6 +29,14 @@ class Attendee < ApplicationRecord
       end
     end
   end
+
+  def find_badges(attendees)
+    badges = []
+    attendees.each do |attendee|
+      badges << attendee.badge unless attendee.badge.blank?
+    end
+    return badges
+  end
   private
 
   def notify_create

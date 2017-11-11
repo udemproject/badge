@@ -27,7 +27,6 @@
       <th width="150"> <%= link_to "Id", admin_notifications_path(order:"id"), class: "category" %></th>
       <th width="150">  <%= link_to "Name", admin_notifications_path(order:"name"), class: "category" %></th>
       <th width="150"> Message </th>
-      <th width="150"> Edit </th>
       <th width="150"> Delete </th>
     </tr>
   </thead>
@@ -37,7 +36,6 @@
       <td><%= notification.id%></td>
       <td><%= notification.badge.attendee.user.name%></td>
       <td><%= notification.message_sent%></td>
-      <td><%= link_to "Edit", edit_admin_notification_path(id: notification.id), class: "category" %></td>
       <td><%= link_to 'Delete',{ action: :destroy, id: notification.id }, method: :delete , data: { confirm: 'Are you sure?' }, class: "category" %></td>
     </tr>
   </tbody>
