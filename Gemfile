@@ -27,6 +27,7 @@ gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
 gem "omniauth"
 gem "omniauth-google-oauth2"
 gem 'foundation-rails'
+gem 'hashie', '~> 3.5', '>= 3.5.6'
 
 group :production do
   gem 'sidekiq'

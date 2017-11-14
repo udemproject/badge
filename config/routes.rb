@@ -22,13 +22,16 @@ Rails.application.routes.draw do
     get 'users/:id/editProfile', to: 'users#editProfile'
     patch '/users/:id/prof', to:'users#updateProfile'
     put '/users/:id/prof', to:'users#updateProfile'
-    get 'notifications/new/:event_id/:team_id', to: 'notifications#new', as: 'notifications/team'
+    get 'notifications/new/:event_id', to: 'notifications#new', as: 'notifications/event'
 
     # get 'updated_at', to: 'badge#updated_at', as: 'update'
 
     root to: 'attendees#index'
   end
-
+  namespace :api do
+    resources :badges
+    root to:'badges#index'
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'privacy-policy', to: 'pages#privacy'
   # get 'auth/failure', to: redirect('/')
