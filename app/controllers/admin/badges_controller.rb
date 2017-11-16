@@ -18,6 +18,11 @@ module Admin
 
     def new
       @badge = Badge.new
+      @attendees = Attendee.all
+      @events = Event.all
+      if(params[:event_id])
+          @attendees = Attendee.all.where(event_id: params[:event_id].to_i)
+      end
     end
 
     # POST /badge

@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     patch '/users/:id/prof', to:'users#updateProfile'
     put '/users/:id/prof', to:'users#updateProfile'
     get 'notifications/new/:event_id', to: 'notifications#new', as: 'notifications/event'
+    get 'badges/new/:event_id', to: 'badges#new', as: 'badges/event'
 
     # get 'updated_at', to: 'badge#updated_at', as: 'update'
 

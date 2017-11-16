@@ -10,7 +10,16 @@ class Attendee < ApplicationRecord
   validate :validate_presence_update, on: [:edit, :update]
 
   def names
-    return self.user.name
+    name = self.user.name
+    email = self.user.email
+    return "name: "+ name + " email: "+email
+  end
+  def badge_present
+    if self.badge
+      return true
+    else
+      return false
+    end
   end
 
   def validate_presence

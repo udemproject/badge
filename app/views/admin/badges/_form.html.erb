@@ -13,34 +13,23 @@
     </div>
   </div>
 <% end %>
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Events
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <% @events.each do |event|%>
+      <li><a><%= link_to event.name, new_admin_badge_path(event_id: event.id), class: "category" %></a></li>
+    <%end%>
+  </ul>
+</div>
 
   <div class="form-group">
     <%= f.label :attendee_id %>
     <div class="col-lg-10">
-        <%= f.collection_select :attendee_id, Attendee.all, :id, :names, class: 'form-control' %>
+        <%= f.collection_select :attendee_id, @attendees, :id, :names, class: 'form-control' %>
     </div>
   </div>
 
-  <div class="form-group">
-    <%unless @badge.errors[:dns].empty?%>
-    <div class="form-group">
-    <p class="red">DNS <%=@badge.errors[:dns][0]%></p>
-    </div>
-    <script type="text/javascript">
-
-    </script>
-    <%end%>
-    <%= f.label "Dns to badge", class: 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :dns, class: 'form-control' %>
-    </div>
-    </div>
-
-  <div class="form-group">
-  <%= f.label :messages %>
-  <div class="col-lg-10">
-    <%= f.select(:message_sent, Badge.notifications.keys.map {|messages| [messages..titleize,messages]})  %>
-  </div>
   <div class="form-group">
       <div class="col-lg-offset-2 col-lg-10">
         <%= f.submit nil, class: 'btn btn-primary' %>

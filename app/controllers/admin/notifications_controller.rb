@@ -13,10 +13,12 @@ module Admin
     def new
       @notification = Notification.new
       @events = Event.all
+      @badges = Badge.all
 
       if(params[:event_id])
         @show_event = Event.find(params[:event_id].to_i).name
         @team =  Event.find(params[:event_id].to_i).teams
+        @badges = Badge.all.select{|badge| badge.attendee.event.id == params[:event_id].to_i }
         @block = true
       else
         @show_event = nil
@@ -47,24 +49,24 @@ module Admin
     # POST /badge
     def create
 
-      # if(notification_params.team_id)
-      # elsif notification_params.team_id == "-1"
-      #   attendees  =  Event.find(otification_params.event_id.to_i).attendees
-      #       @badges = attendees[0].find_badges(attendees)
-      #       @badges.each do |badge|
-      #         Notification.create(badge_id: badge.id, message_sent: notification_params.message_sent.to_i)
-      #       end
-      #
-      #   elsif notification_params.team_id.to_i >= 0
-      #     attendees  =  Team.find(notification_params.team_id.to_i).attendees
-      #     @badges = attendees[0].find_badges(attendees)
-      #     @badges.each do |badge|
-      #       Notification.create(badge_id: badge.id, message_sent: notification_params.message_sent.to_i)
-      #     end
-      #
-      #   else
-      #       Notification.create(badge_id: notification_params.badge_id.to_i, message_sent: notification_params.message_sent.to_i)
-      # end
+      if(notification_params.team_id)
+      elsif notification_params.team_id == "-1"
+        attendees  =  Event.find(otification_params.event_id.to_i).attendees
+            @badges = attendees[0].find_badges(attendees)
+            @badges.each do |badge|
+              Notification.create(badge_id: badge.id, message_sent: notification_params.message_sent.to_i)
+            end
+
+        elsif notification_params.team_id.to_i >= 0
+          attendees  =  Team.find(notification_params.team_id.to_i).attendees
+          @badges = attendees[0].find_badges(attendees)
+          @badges.each do |badge|
+            Notification.create(badge_id: badge.id, message_sent: notification_params.message_sent.to_i)
+          end
+
+        else
+            Notification.create(badge_id: notification_params.badge_id.to_i, message_sent: notification_params.message_sent.to_i)
+      end
     end
 
 
@@ -77,7 +79,7 @@ module Admin
 
     # Only allow a trusted parameter "white list" through.
     def notification_params(my_params)
-      my_params.require(:message_sent).permit(:badge_id, :team_id, :event_id)
+      my_params.require(:message_sent).permit(:badge_id, :team_id, :event_id, :all)
     end
   end
 end

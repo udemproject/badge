@@ -11,10 +11,11 @@ module Api
 
     # GET /badge/1
     def show
-      @notification = @badge.notifications.where(active: true).to_json
-      @notification.update(active: false) unless @badge.notifications.where(active: true).blank?
+      @notification = @badge.notifications.where(active: true)
+      @json = @notification.to_json(methods: :message_int)
+      @notification.update_all(active: false) unless @badge.notifications.where(active: true).blank?
       @badge = @badge.to_json
-      render json: (@badge + @notification)
+      render json: (@badge + @json)
     end
 
     # POST /badge

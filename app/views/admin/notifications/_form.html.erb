@@ -20,6 +20,14 @@
       <div class="col-10">
         <%= f.select(:message_sent, Notification.message_sents.keys.map {|message_sent| [message_sent.upcase, message_sent]}, {}, class: 'c-select form-control') %>
       </div>
+
+      <div class="form-group">
+        <%= f.label :badge_id %>
+        <div class="col-lg-10">
+            <%= f.collection_select :badge_id, @badges, :id, :names, class: 'form-control' %>
+        </div>
+      </div>
+
     <div class="container">
       <%unless @team.blank? %>
       <%= f.label :team_id, 'Select a group', class: 'col-2 form-control-label' %>
@@ -27,6 +35,13 @@
         <%=  f.collection_select :team_id, @team, :id, :name, {}, class: 'form-control' %>
       </div>
     <%end%>
+    </div>
+
+    <div class="container">
+      <%= f.label :all, 'Select all the badges', class: 'col-2 form-control-label' %>
+      <div class="form-check">
+        <%= f.check_box :all%>
+      </div>
     </div>
 
   <%end%>
