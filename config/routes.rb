@@ -60,12 +60,6 @@ Rails.application.routes.draw do
     get 'teams/select', to: 'teams#select', as: 'select'
     post 'teams/select/pick/:id' => 'teams#pick', as: 'pick_team'
 
-    get 'auth/:provider/callback', to: 'sessions#create'
-    post 'auth/:provider/callback', to: 'sessions#create'
-    get 'auth/failure', to: redirect('/:event')
-
-    get 'review', to: 'reviews#new'
-    post 'review', to: 'reviews#create'
 
     get 'login', to: 'sessions#login', as: 'login'
     get 'user/new', to: 'users#new', as: 'new_user'
@@ -73,5 +67,5 @@ Rails.application.routes.draw do
   end
 
   # Serve websocket cable requests in-process
-   mount ActionCable.server => '/cable'
+   # mount ActionCable.server => '/cable'
 end
