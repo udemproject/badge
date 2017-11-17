@@ -3,8 +3,8 @@ class Attendee < ApplicationRecord
   belongs_to :event , dependent: :destroy
   belongs_to :team, required: false
   has_one :badge
-  after_update :notify_update
-  after_create :notify_create
+  # after_update :notify_update
+  # after_create :notify_create
   validates :event, presence: true
   validate :validate_presence, on: [:new, :create]
   validate :validate_presence_update, on: [:edit, :update]
