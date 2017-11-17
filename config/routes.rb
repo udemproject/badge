@@ -73,5 +73,5 @@ Rails.application.routes.draw do
   end
 
   # Serve websocket cable requests in-process
-  mount ActionCable.server => '/cable'
+  # mount ActionCable.server => '/cable'
 end
