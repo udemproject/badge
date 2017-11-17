@@ -14,7 +14,7 @@
         </div>
       </div>
         <%unless @show_event.blank?%>
-        <%= f.label :event, @show_event, class: 'col-12 form-control-label' %>
+        <%= f.label :event, @show_event.name, class: 'col-12 form-control-label' %>
         <%end%>
       <%= f.label :message_sent, 'Message', class: 'col-2 form-control-label' %>
       <div class="col-10">
@@ -40,14 +40,16 @@
     <div class="container">
       <%= f.label :all, 'Select all the badges', class: 'col-2 form-control-label' %>
       <div class="form-check">
-        <%= f.check_box :all%>
+        <%= f.check_box :all  unless @show_event.blank?%>
       </div>
     </div>
+      <%f.event_id = @show_event unless @show_event.blank?%>
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+          <%= f.submit nil, class: 'button' %>
+          <%= link_to t('.cancel', default: t("helpers.links.cancel")),
+                    admin_notifications_path, class: 'button' %>
+        </div>
+      </div>
 
   <%end%>
-  <div class="action">
-    <%= submit_tag nil, class: "btn-primary"%>
-  </div>
-
-    <%= link_to t('.cancel', default: t("helpers.links.cancel")),
-              admin_notifications_path, class: 'button' %>

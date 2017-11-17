@@ -12,10 +12,9 @@ module Api
     # GET /badge/1
     def show
       @notification = @badge.notifications.where(active: true)
-      @json = @notification.to_json(methods: :message_int)
-      @notification.update_all(active: false) unless @badge.notifications.where(active: true).blank?
-      @badge = @badge.to_json
-      render json: (@badge + @json)
+      @json = @notification[-1].to_json(methods: :message_int)
+      # @notification.update_all(active: false) unless @notification.blank?
+      render json: @json
     end
 
     # POST /badge
@@ -44,14 +43,14 @@ module Api
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_badge
-        @badge = Badge.find(params[:id])
-      end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_badge
+      @badge = Badge.find(params[:id])
+    end
 
-      # Only allow a trusted parameter "white list" through.
-      def badge_params
-        params.require(:badge).permit(:user_id , :message, :sound)
-      end
+    # Only allow a trusted parameter "white list" through.
+    def badge_params
+      params.require(:badge).permit(:user_id , :message, :sound)
+    end
   end
 end
