@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  belongs_to :profile, required: false
+  belongs_to :profile, required: false, dependent: :destroy
   has_many :invitations, dependent: :destroy
   has_many :accepted_invitations, -> { where(status: :accepted) }, class_name: 'Invitation'
   has_many :attendees, dependent: :destroy
@@ -18,7 +18,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
-  validates :password, presence: true, length: { minimum: 6 }, on: [:create, :update]
+  validates :password, presence:true, length: { minimum: 6 }, on: :create
   has_secure_password
 
   def overall_rank

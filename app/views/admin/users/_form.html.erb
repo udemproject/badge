@@ -1,7 +1,7 @@
 <div class="avatar">
   <span class="plus">+</span>
 </div>
-<div class="card-block">
+<div class="card-block m-4">
 
   <%= form_for [:admin, @user] do |f| %>
     <div class="form-group row">
@@ -54,8 +54,7 @@
     </div>
 
       </div>
-
-    <div class="row">
+    <div class="row mb-4">
       <div class="col-sm-4 offset-sm-1">
         <%= f.submit nil, class:"btn btn-primary btn-block" %>
       </div>

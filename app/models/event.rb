@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   validates :finishes_at, presence: true
   validate :expiration_date_cannot_be_in_the_past
   before_create :generate_slug
-  belongs_to :location
+  belongs_to :location, dependent: :destroy
   has_many :invitations, dependent: :destroy
   has_many :attendees, dependent: :destroy
   has_many :teams, dependent: :destroy

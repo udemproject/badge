@@ -1,7 +1,7 @@
 class Team < ApplicationRecord
   belongs_to :event, dependent: :destroy
   has_many :attendees, -> { joins(:event) }
-  has_many :profiles, through: :attendees
+  has_many :profil, through: :attendees
   has_many :users, through: :attendees
   validate :name_available
 

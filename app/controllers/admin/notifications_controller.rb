@@ -1,5 +1,7 @@
 module Admin
   class NotificationsController < Admin::ApplicationController
+    before_action :set_notification, only: :destroy
+
     # GET /badge
     def index
       @notifications = Notification.all
@@ -53,20 +55,21 @@ module Admin
 
       if(notification_params["team_id"])
       elsif notification_params["all"] == "1"
-        attendees  =  Event.find(notification_params["event_id"].to_i).attendees
+        attendees  = Attendee.all
             @badges = attendees[0].find_badges(attendees)
             @badges.each do |badge|
             save = Notification.new(badge_id: badge.id, message_sent: notification_params["message_sent"])
             save.save
             end
 
-        elsif notification_params["team_id"].to_i >= 0
-          attendees  =  Team.find(notification_params.team_id.to_i).attendees
-          @badges = attendees[0].find_badges(attendees)
-          @badges.each do |badge|
-            save = Notification.new(badge_id: badge.id, message_sent: notification_params["message_sent"])
-            save.save
-          end
+            if notification_params["team_id"].to_i >= 0
+              attendees  =  Team.find(notification_params.team_id.to_i).attendees
+              @badges = attendees[0].find_badges(attendees)
+              @badges.each do |badge|
+                save = Notification.new(badge_id: badge.id, message_sent: notification_params["message_sent"])
+                save.save
+              end
+            end  
 
         else
             save = Notification.new(badge_id: notification_params["badge_id"].to_i, message_sent:  notification_params["message_sent"])
@@ -75,13 +78,12 @@ module Admin
       redirect_to admin_notifications_path
     end
 
-
     private
 
     # Use callbacks to share common setup or constraints between actions.
-    # def set_notification
-    #   @notification = Notification.find(params[:id])
-    # end
+    def set_notification
+       @notification = Notification.find(params[:id])
+     end
 
     # Only allow a trusted parameter "white list" through.
     def notification_params

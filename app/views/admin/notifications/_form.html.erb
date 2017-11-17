@@ -16,15 +16,17 @@
         <%unless @show_event.blank?%>
         <%= f.label :event, @show_event.name, class: 'col-12 form-control-label' %>
         <%end%>
-      <%= f.label :message_sent, 'Message', class: 'col-2 form-control-label' %>
-      <div class="col-10">
-        <%= f.select(:message_sent, Notification.message_sents.keys.map {|message_sent| [message_sent.upcase, message_sent]}, {}, class: 'c-select form-control') %>
-      </div>
+          <div class="form-group m-2">
+            <%= f.label :message_sent, 'Message', class: 'col-2 form-control-label float-left m-2' %>
+            <div class="col-10">
+              <%= f.select(:message_sent, Notification.message_sents.keys.map {|message_sent| [message_sent.upcase, message_sent]}, {}, class: 'form-control m-2 float-left') %>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <%= f.label :badge_id %>
+      <div class="form-group m-4">
+        <%= f.label :badge_id , 'Select Badge', class: 'col-2 form-control-label float-left'%>
         <div class="col-lg-10">
-            <%= f.collection_select :badge_id, @badges, :id, :names, class: 'form-control' %>
+            <%= f.collection_select :badge_id, @badges, :id, :names, class: 'form-control float-left' %>
         </div>
       </div>
 
@@ -37,13 +39,12 @@
     <%end%>
     </div>
 
-    <div class="container">
-      <%= f.label :all, 'Select all the badges', class: 'col-2 form-control-label' %>
-      <div class="form-check">
-        <%= f.check_box :all  unless @show_event.blank?%>
+    <div class=" m-4 row form-group">
+      <%= f.label :all, 'Select all the badges', class: 'col-2 form-control-label float-left' %>
+      <div class="form-check float-left">
+        <%= f.check_box :all%>
       </div>
     </div>
-      <%f.event_id = @show_event unless @show_event.blank?%>
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
           <%= f.submit nil, class: 'button' %>
