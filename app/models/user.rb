@@ -1,9 +1,9 @@
 class User < ApplicationRecord
-  belongs_to :profile, required: false, dependent: :destroy
-  has_many :invitations, dependent: :destroy
+  belongs_to :profile, required: false
+  has_many :invitation
   has_many :accepted_invitations, -> { where(status: :accepted) }, class_name: 'Invitation'
-  has_many :attendees, dependent: :destroy
-  has_many :events, through: :attendees,  dependent: :destroy
+  has_many :attendees
+  has_many :events, through: :attendees
 
   has_many :reviewees, class_name: 'Review', foreign_key: 'reviewee_id'
   has_many :reviewers, class_name: 'Review', foreign_key: 'reviewer_id'
