@@ -1,5 +1,5 @@
 class Location < ApplicationRecord
-  has_many :events, dependent: :destroy
+  has_many :events
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :address, presence: true
   VALID_MAPS =/^http\:\/\/|https\:\/\/|www\.google$/

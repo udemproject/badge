@@ -16,10 +16,10 @@
         <%unless @show_event.blank?%>
         <%= f.label :event, @show_event.name, class: 'col-12 form-control-label' %>
         <%end%>
-          <div class="form-group m-2">
+          <div class="form-group row  m-4">
             <%= f.label :message_sent, 'Message', class: 'col-2 form-control-label float-left m-2' %>
             <div class="col-10">
-              <%= f.select(:message_sent, Notification.message_sents.keys.map {|message_sent| [message_sent.upcase, message_sent]}, {}, class: 'form-control m-2 float-left') %>
+              <%= f.select(:message_sent, Notification.message_sents.keys.map {|message_sent| [message_sent.upcase, message_sent]}, {}, class: 'col-9 m-2 float-left') %>
             </div>
           </div>
 

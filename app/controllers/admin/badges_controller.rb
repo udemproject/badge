@@ -1,6 +1,6 @@
 module Admin
   class BadgesController < Admin::ApplicationController
-    before_action :set_badge, only: [:show, :update, :destroy]
+    before_action :set_badge, only: [:show, :update, :destroy, :edit]
 
     # GET /badge
     def index
@@ -43,15 +43,21 @@ module Admin
       end
     end
 
+    def edit
+      @events = Event.all
+      @attendees = Attendee.all
+    end
+
     # DELETE /badge/1
     def destroy
       @badge.destroy
+      redirect_to admin_badges_path, notice: 'Badge was successfully destroyed.'
     end
 
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_badge
-        @badge = Badge.find(params[:id])
+        @badge = Badge.find(params[:id].to_i)
       end
 
       # Only allow a trusted parameter "white list" through.

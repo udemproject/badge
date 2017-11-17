@@ -19,9 +19,6 @@ Rails.application.routes.draw do
     get 'users/:order' =>'users#index',  as: 'users/asc'
     get 'badges/:order' =>'badges#index',  as: 'badges/asc'
     get 'notifications/:order' =>'notifications#index',  as: 'notifications/asc'
-    get 'users/:id/editProfile', to: 'users#editProfile'
-    patch '/users/:id/prof', to:'users#updateProfile'
-    put '/users/:id/prof', to:'users#updateProfile'
     get 'notifications/new/:event_id', to: 'notifications#new', as: 'notifications/event'
     get 'badges/new/:event_id', to: 'badges#new', as: 'badges/event'
 

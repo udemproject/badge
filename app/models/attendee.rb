@@ -1,7 +1,7 @@
 class Attendee < ApplicationRecord
   belongs_to :user, dependent: :destroy
-  belongs_to :event , dependent: :destroy
-  belongs_to :team, required: false
+  belongs_to :event, dependent: :destroy
+  belongs_to :team, required: false, dependent: :destroy
   has_one :badge , dependent: :destroy
 
   # after_update :notify_update

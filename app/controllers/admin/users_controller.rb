@@ -1,6 +1,6 @@
 module Admin
   class UsersController < Admin::ApplicationController
-    before_action :set_user, only: [:show, :update, :destroy, :edit, :editProfile, :updateProfile]
+    before_action :set_user, only: [:update, :destroy, :edit]
 
     def index
       @users =  User.all
@@ -19,21 +19,12 @@ module Admin
 
     def edit; end
 
-    def editProfile; end
-
     def update
+      user_params.delete(:password) unless user_params[:password].present?
       if @user.update(user_params)
         redirect_to admin_users_path
       else
         render :edit
-      end
-    end
-
-    def updateProfile
-      if @user.update(profileUser_params)
-        redirect_to admin_users_path
-      else
-        render :editProfile
       end
     end
 
@@ -69,12 +60,7 @@ module Admin
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      user_params = params.require(:user).permit(:name, :email, :password, :shirt_size, :avatar)
-      user_params.delete(:password) unless user_params[:password].present?
-    end
-
-    def profileUser_params
-      params.require(:user).permit(:name, :email, :profile_id)
+      params.require(:user).permit(:name, :email, :password, :shirt_size, :avatar, :profile_id)
     end
   end
 end

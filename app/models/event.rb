@@ -4,11 +4,11 @@ class Event < ApplicationRecord
   validates :finishes_at, presence: true
   validate :expiration_date_cannot_be_in_the_past
   before_create :generate_slug
-  belongs_to :location, dependent: :destroy
-  has_many :invitations, dependent: :destroy
-  has_many :attendees, dependent: :destroy
-  has_many :teams, dependent: :destroy
-  has_many :users, through: :attendees, dependent: :destroy
+  belongs_to :location
+  has_many :invitations
+  has_many :attendees
+  has_many :teams
+  has_many :users, through: :attendees
   has_many :invited_users, through: :invitations, class_name: 'User', source: :user
   has_many :reviews, -> { where.not(answer: nil) }
   attachment :image, content_type: ["image/jpeg", "image/png"]

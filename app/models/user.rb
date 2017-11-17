@@ -19,6 +19,7 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
   validates :password, presence:true, length: { minimum: 6 }, on: :create
+  validates :password, length: {minimum: 5, maximum: 120}, on: :update, allow_blank: true
   has_secure_password
 
   def overall_rank

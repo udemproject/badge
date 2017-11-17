@@ -47,6 +47,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    user_params.delete(:password) unless user_params[:password].present?
     if current_user.update(user_params)
       redirect_to user_next_path, notice: 'Se actualizaron tus datos'
     else

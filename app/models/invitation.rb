@@ -1,6 +1,6 @@
 class Invitation < ApplicationRecord
-  belongs_to :user
-  belongs_to :event
+  belongs_to :user, dependent: :destroy
+  belongs_to :event, dependent: :destroy
 
   before_create :generate_token
 

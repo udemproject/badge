@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114035304) do
+ActiveRecord::Schema.define(version: 20171117212743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,17 +139,18 @@ ActiveRecord::Schema.define(version: 20171114035304) do
     t.index ["profile_id"], name: "index_users_on_profile_id", using: :btree
   end
 
-  add_foreign_key "attendees", "events"
+  add_foreign_key "attendees", "events", on_delete: :cascade
   add_foreign_key "attendees", "teams"
-  add_foreign_key "attendees", "users"
+  add_foreign_key "attendees", "users", on_delete: :cascade
+  add_foreign_key "badges", "attendees", on_delete: :cascade
   add_foreign_key "events", "locations"
-  add_foreign_key "invitations", "events"
-  add_foreign_key "invitations", "users"
-  add_foreign_key "notifications", "badges"
+  add_foreign_key "invitations", "events", on_delete: :cascade
+  add_foreign_key "invitations", "users", on_delete: :cascade
+  add_foreign_key "notifications", "badges", on_delete: :cascade
   add_foreign_key "reviews", "events"
   add_foreign_key "reviews", "questions"
   add_foreign_key "reviews", "users", column: "reviewee_id"
   add_foreign_key "reviews", "users", column: "reviewer_id"
-  add_foreign_key "teams", "events"
+  add_foreign_key "teams", "events", on_delete: :cascade
   add_foreign_key "users", "profiles"
 end
