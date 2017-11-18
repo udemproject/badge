@@ -13,7 +13,7 @@ module Api
     def show
       @notification = @badge.notifications.where(active: true)
       @json = @notification.all.last.to_json(methods: :message_int)
-      # @notification.update_all(active: false) unless @notification.blank?
+      @notification.update_all(active: false) unless @notification.blank?
       render json: @json
     end
 
