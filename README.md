@@ -1,6 +1,6 @@
 # README
 
-
+![Alt text](app/assets/images/reamde/Screen Shot 2017-11-18 at 9.37.45 AM.png?raw=true "Optional Title")
 Things you may want to cover:
 
 * rails  version necessary is the 5 above
